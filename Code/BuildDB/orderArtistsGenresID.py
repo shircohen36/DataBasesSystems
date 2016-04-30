@@ -1,36 +1,16 @@
 
 # coding: utf-8
 
-# In[13]:
+# In[36]:
 
 import csv
 
 
-# In[8]:
-
-# add id to rows
-
-filepath ="MusicGenre.csv"
-with open(filepath) as f:
-    data = list(csv.reader(f))
-    f.close
-data.reverse
-newfile="MusicGenre_id.csv"
-with open(newfile,'w') as f:
-    i=0
-    for row in data:
-        for item in row:
-            f.write('%s,' % item)
-        f.write('%d\n' % i)
-        i+=1
-    f.close()
-
-
-# In[22]:
+# In[37]:
 
 # load genre:id to dict
 
-filepath ="MusicGenre_id.csv"
+filepath ="ExcelOntologyTablesForDB/MusicGenre_withID.csv"
 with open(filepath) as f:
     data = list(csv.reader(f))
     f.close
@@ -49,21 +29,23 @@ for row in data:
     dict.update(temp)
 
 
-# In[35]:
+# In[38]:
 
 # write row to file 'f'
-def writeRow (f,row):
+def writeRow (f,row,insertname,index):
     for i in range (0,len(row)):
         if (i<len(row)-1):
             f.write('%s,' % row[i])
         else:
-            f.write('%s\n' % row[i])    
+            f.write('%s\n' % row[i]) 
+        if i==index: #write the genre name that fits this ID
+            f.write('%s,' % insertname)
 
 
-# In[36]:
+# In[39]:
 
 # write artist's genres by 'id' in split rows
-filepath ="MusicalArtist.csv"
+filepath ="ExcelOntologyTablesClean/MusicalArtist.csv"
 with open(filepath) as f:
     data = list(csv.reader(f))
     f.close
@@ -72,17 +54,19 @@ headline=data.pop(0)
 for i in range (0,len(headline)):
     if headline[i]=="genre_label":
         gInx=i
-filepath ="MusicalArtist_id.csv"
+        headline[i]="genre_ID"
+filepath ="ExcelOntologyTablesForDB/MusicalArtist_genreByID.csv"
 with open(filepath,'w') as f:
-    writeRow(f,headline)
+    writeRow(f,headline,"genre_name",gInx)
     for row in data:
         if row[gInx]!="NULL":
-            if "{" in row[gInx]:
-                genre=row[gInx].split("{",1)[1]
+            genre=row[gInx]
+            if "{" in genre:
+                genre=genre.split("{")[1]
             if "}" in genre:
-                genre=genre.split("}",1)[0]
+                genre=genre.split("}")[0]
             if "|" in genre:
-                genre=genre.split("|",1)
+                genre=genre.split("|")
                 for item in genre:
                     tempRow=row
                     if item in dict:
@@ -90,9 +74,17 @@ with open(filepath,'w') as f:
                     else:
                         idg=0
                     tempRow[gInx]=idg
-                    writeRow(f,tempRow)
+                    writeRow(f,tempRow,item,gInx)
+            else:
+                tempRow=row
+                if genre in dict:
+                    idg=int(dict[genre])
+                else:
+                    idg=0
+                tempRow[gInx]=idg
+                writeRow(f,tempRow,genre,gInx)
         else:
-            writeRow(f,row)
+            writeRow(f,row,"NULL",gInx)
     f.close
 
 
