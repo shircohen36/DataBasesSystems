@@ -22,7 +22,7 @@ def createDictFromFirst (filepath):
     labelIndex=0
     idIndex=0
     for i in range (0,len(headline)):
-        if headline[i]=="label":
+        if headline[i]=="name":
             labelIndex=i
         if headline[i]=="ID":
             idIndex=i
@@ -45,7 +45,7 @@ def writeRow (f,dictItem,matchedItem):
 
 #filepath ="ExcelOntologyTablesClean/MusicalArtist.csv"
 
-def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch,ignorePer):
+def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch):
     
     firstname=fileOne.split("/")
     firstname=firstname[len(firstname)-1].split(".csv")[0]
@@ -71,34 +71,34 @@ def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch,ignorePer):
         for labelToMatch in labelsToMatch:
             for i in range (0,len(headline)):
                 if headline[i]==labelToMatch: #item to match to in first file
-                    genreInx=i
+                    matchInx=i
                 if headline[i]=="ID": #id of row in second file
                     idIndex=i
                   
             for row in data:
-                if row[genreInx]!="NULL":
-                    genre=row[genreInx]
-                    if "{" in genre:
-                        genre=genre.split("{")[1]
-                    if "}" in genre:
-                        genre=genre.split("}")[0]
-                    if "|" in genre:
-                        genre=genre.split("|")
-                        for item in genre:
-                            if ignorePer: # [name (info)] -> take only name
-                                if " (" in item:
-                                    item=item.split(" (")[0]
+                if row[matchInx]!="NULL":
+                    match=row[matchInx]
+                    if "{" in match:
+                        match=match.split("{")[1]
+                    if "}" in match:
+                        match=match.split("}")[0]
+                    if "|" in match:
+                        match=match.split("|")
+                        for item in match:
+                        # if ignorePer: # [name (info)] -> take only name
+                            # if " (" in item:
+                             #  item=item.split(" (")[0]
                             if item in dict:
-                                idgenre=int(dict[item]) #found item in second file take its ID
+                                idmatch=int(dict[item]) #found item in second file take its ID
                             else:
-                                idgenre=0 #no match found
-                            writeRow(f,idgenre,row[idIndex])
+                                idmatch=0 #no match found
+                            writeRow(f,idmatch,row[idIndex])
                     else:
-                        if genre in dict:
-                            idgenre=int(dict[genre])
+                        if match in dict:
+                            idmatch=int(dict[match])
                         else:
-                            idgenre=0
-                        writeRow(f,idgenre,row[idIndex])
+                            idmatch=0
+                        writeRow(f,idmatch,row[idIndex])
                 else:
                     writeRow(f,"NULL",row[idIndex]) #NULL in the place to match
         f.close
@@ -108,9 +108,9 @@ def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch,ignorePer):
 
 # create joined files
 
-def createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,ignorePer):
+def createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch):
     createDictFromFirst(fileOne)
-    writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch,ignorePer)
+    writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
 # In[ ]:

@@ -13,8 +13,8 @@ cleanDataAddID.cleanFile("MusicGenre.csv")
 cleanDataAddID.cleanFile("MusicalWork.csv")
 cleanDataAddID.cleanFile("MusicalArtist.csv")
 cleanDataAddID.cleanFile("Band.csv")
-cleanDataAddID.cleanFile("Single.csv")
-cleanDataAddID.cleanFile("Song.csv")
+#cleanDataAddID.cleanFile("Single.csv")
+#cleanDataAddID.cleanFile("Song.csv")
 
 
 # In[12]:
@@ -30,9 +30,9 @@ fileOne="ExcelOntologyTablesClean/MusicGenre.csv"
 DirOutput="ExcelOntologyTablesForDB"
 
 labelsToMatch=list()
-labelsToMatch.append("genre label")
+labelsToMatch.append("genre")
 
-#createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,True)
+#createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
 # In[14]:
@@ -44,11 +44,13 @@ fileTwo="ExcelOntologyTablesClean/MusicalWork.csv"
 DirOutput="ExcelOntologyTablesForDB"
 
 labelsToMatch=list()
-labelsToMatch.append("musicalArtist label")
-labelsToMatch.append("bandMember label")
-labelsToMatch.append("artist label")
+labelsToMatch.append("musicalArtist")
+labelsToMatch.append("artist")
+labelsToMatch.append("musicalBand")
+labelsToMatch.append("bandMember")
+labelsToMatch.append("associatedBand")
 
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,True)
+createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
 # In[16]:
@@ -60,11 +62,14 @@ fileTwo="ExcelOntologyTablesClean/MusicalWork.csv"
 DirOutput="ExcelOntologyTablesForDB"
 
 labelsToMatch=list()
-labelsToMatch.append("musicalBand label")
-labelsToMatch.append("associatedBand label")
-labelsToMatch.append("artist label")
+labelsToMatch.append("musicalArtist")
+labelsToMatch.append("artist")
+labelsToMatch.append("musicalBand")
+labelsToMatch.append("bandMember")
+labelsToMatch.append("associatedBand")
 
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,True)
+
+createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
 # In[17]:
@@ -76,41 +81,42 @@ fileTwo="ExcelOntologyTablesClean/Band.csv"
 DirOutput="ExcelOntologyTablesForDB"
 
 labelsToMatch=list()
-labelsToMatch.append("bandMember label")
-labelsToMatch.append("currentMember label")
-labelsToMatch.append("formerBandMember label")
-labelsToMatch.append("pastMember label")
-labelsToMatch.append("associatedMusicalArtist label")
+labelsToMatch.append("bandMember")
+labelsToMatch.append("currentMember")
+labelsToMatch.append("formerBandMember")
+labelsToMatch.append("pastMember")
+labelsToMatch.append("associatedMusicalArtist")
+labelsToMatch.append("associatedMusicalBand")
 
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,True)
+createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
 # In[18]:
 
-createFileMatchByID
+#createFileMatchByID
 
-fileOne="ExcelOntologyTablesClean/MusicalWork.csv"
-fileTwo="ExcelOntologyTablesClean/Single.csv"
-DirOutput="ExcelOntologyTablesForDB"
+#fileOne="ExcelOntologyTablesClean/MusicalWork.csv"
+#fileTwo="ExcelOntologyTablesClean/Single.csv"
+#DirOutput="ExcelOntologyTablesForDB"
 
-labelsToMatch=list()
-labelsToMatch.append("label")
+#labelsToMatch=list()
+#labelsToMatch.append("name")
 
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,False)
+#createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
 # In[19]:
 
-createFileMatchByID
+#createFileMatchByID
 
-fileOne="ExcelOntologyTablesClean/MusicalWork.csv"
-fileTwo="ExcelOntologyTablesClean/Song.csv"
-DirOutput="ExcelOntologyTablesForDB"
+#fileOne="ExcelOntologyTablesClean/MusicalWork.csv"
+#fileTwo="ExcelOntologyTablesClean/Song.csv"
+#DirOutput="ExcelOntologyTablesForDB"
 
-labelsToMatch=list()
-labelsToMatch.append("label")
+#labelsToMatch=list()
+#labelsToMatch.append("name")
 
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,False)
+#createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
 # In[ ]:
