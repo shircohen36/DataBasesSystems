@@ -90,17 +90,11 @@ def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch):
                              #  item=item.split(" (")[0]
                             if item in dict:
                                 idmatch=int(dict[item]) #found item in second file take its ID
-                            else:
-                                idmatch=0 #no match found
-                            writeRow(f,idmatch,row[idIndex])
+                                writeRow(f,idmatch,row[idIndex])
                     else:
                         if match in dict:
                             idmatch=int(dict[match])
-                        else:
-                            idmatch=0
-                        writeRow(f,idmatch,row[idIndex])
-                else:
-                    writeRow(f,"NULL",row[idIndex]) #NULL in the place to match
+                            writeRow(f,idmatch,row[idIndex])
         f.close
 
 

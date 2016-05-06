@@ -41,8 +41,14 @@ def writeDataSqlFile(data,tableName,valueTypeArray):
             if "int" in valueTypeArray[i]:
                 f.write("\t%s INT,\n" % item)
             else:
-                f.write("\t%s VARCHAR(2000) CHARACTER SET utf8,\n" % item)
-        f.write("\tPRIMARY KEY (ID)\n")
+                if "comment" in item or "discription" in item:
+                    f.write("\t%s VARCHAR(8000) CHARACTER SET utf8,\n" % item)
+                elif item=="name":
+                    f.write("\t%s VARCHAR(2000) NOT NULL CHARACTER SET utf8,\n" % item)
+                else:
+                    f.write("\t%s VARCHAR(2000) CHARACTER SET utf8,\n" % item)
+        f.write("\tPRIMARY KEY (ID),\n")
+        f.write("\tUNIQUE (name)\n")
         f.write(");\n")
         
         # insert values to table
@@ -137,4 +143,16 @@ def createMatchTable(dirpath):
             f.close
         valueTypeArray=checkType(data)
         writeMatchSqlFile(data,tableName,valueTypeArray)    
+
+
+# In[ ]:
+
+# write index file
+def createIndex(dirpath):
+        indexpath="SQL_DB/TablesIndex.sql"
+        with open(indexpath,'w') as f:
+            for filename in os.listdir(dirpath):
+                tableName=filename.split('.csv')[0]
+                f.write("CREATE INDEX nameIndex ON %s(name);\n" % tableName)
+            f.close       
 

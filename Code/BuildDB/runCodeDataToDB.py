@@ -8,7 +8,7 @@ import createFileMatchByID
 import createMySQLTableFromCSV
 
 
-# In[3]:
+# In[5]:
 
 #cleanDataAddID.cleanFile("MusicGenre.csv")
 #cleanDataAddID.cleanFile("MusicalWork.csv")
@@ -18,7 +18,7 @@ import createMySQLTableFromCSV
 #cleanDataAddID.cleanFile("Song.csv")
 
 
-# In[ ]:
+# In[8]:
 
 #createFileMatchByID
 
@@ -120,15 +120,13 @@ labelsToMatch.append("associatedMusicalBand")
 #createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch)
 
 
-# In[5]:
+# In[2]:
 
-createMySQLTableFromCSV
+#createMySQLTableFromCSV
 
-createMySQLTableFromCSV.createDataTable("ExcelOntologyTablesClean")
-createMySQLTableFromCSV.createMatchTable("ExcelOntologyTablesMatch")
-
-#createMySQLTableFromCSV.createDataTable("test1")
-#createMySQLTableFromCSV.createMatchTable("test2")
+#createMySQLTableFromCSV.createDataTable("ExcelOntologyTablesClean")
+#createMySQLTableFromCSV.createMatchTable("ExcelOntologyTablesMatch")
+#createMySQLTableFromCSV.createIndex("ExcelOntologyTablesClean")
 
 
 # In[ ]:
