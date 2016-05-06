@@ -122,11 +122,9 @@ labelsToMatch.append("associatedMusicalBand")
 
 # In[2]:
 
-#createMySQLTableFromCSV
+createMySQLTableFromCSV
 
-#createMySQLTableFromCSV.createDataTable("ExcelOntologyTablesClean")
-#createMySQLTableFromCSV.createMatchTable("ExcelOntologyTablesMatch")
-#createMySQLTableFromCSV.createIndex("ExcelOntologyTablesClean")
+createMySQLTableFromCSV.createSQLTables("ExcelOntologyTablesClean","ExcelOntologyTablesMatch","ExcelOntologyTablesClean")
 
 
 # In[ ]:
