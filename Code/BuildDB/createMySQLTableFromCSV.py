@@ -38,7 +38,6 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     fscheme.write("\tID INT NOT NULL AUTO_INCREMENT,\n")
     for i in range (0,len(headline)-1):
         item=headline[i]
-        item=item.replace(" ","_")
         if valueTypeArray[i]==0:
             fscheme.write("\t%s INT,\n" % item)
         else:
@@ -83,7 +82,6 @@ def writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     # create table
     for i in range (0,len(headline)):
         item=headline[i]
-        item=item.replace(" ","_")
         fscheme.write("\t%s INT\n" % item)
         refTable=item.split("_ID")[0]
         fscheme.write("\t\tREFERENCES %s(ID)" % refTable)
