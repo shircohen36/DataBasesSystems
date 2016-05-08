@@ -14,7 +14,6 @@ def cleanData(data):
     for row in data:
         for i in range (0,len(row)): #clean the data
             row[i]=row[i].replace(',', '-')
-            row[i]=row[i].replace('_', ' ')
     return data
 
 
