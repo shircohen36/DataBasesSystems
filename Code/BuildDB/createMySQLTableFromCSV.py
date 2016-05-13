@@ -157,7 +157,7 @@ def createIndex(f,dirpath):
 
 # write all DB building queries into one SQL_DB file
 def createSQLTables(dir1, dir2,dir3):
-    outputSchemePath="SQL_DB/musicDB_scheme.sql"
+    outputSchemePath="SQL_DB/musicDB_schema.sql"
     outputDataPath="SQL_DB/musicDB_data.sql"
     with open(outputSchemePath,'w') as fscheme:
         with open(outputDataPath,'w') as fdata:
