@@ -5,6 +5,7 @@
 
 import csv
 import os
+import unicodecsv
 
 
 # In[69]:
@@ -52,21 +53,29 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     fscheme.write("\tPRIMARY KEY (ID)\n")
     fscheme.write(");\n\n")
         
-    # insert values to table
+    # insert values to table    
     for row in data:
         fdata.write("INSERT INTO %s VALUES (NULL," % tableName)
+        printrow=True
         for i in range (0,len(row)-1):
-            item=row[i]
-            item=item.replace("\'","\''")
-            if valueTypeArray[i]==0:
-                item=int(item)
-                fdata.write("%d" % item)
-            else:
-                fdata.write('\'')
-                fdata.write("%s" % item)
-                fdata.write('\'')
-            if i<len(headline)-2:
-                fdata.write(",")
+            try:
+                row[i] = unicode(row[i],"utf-8")
+            except:
+                printrow=False
+                break
+        if printrow:
+            for i in range (0,len(row)-1):
+                item=row[i]
+                item=item.replace("\'","\''")
+                if valueTypeArray[i]==0:
+                    item=int(item)
+                    fdata.write("%d" % item)
+                else:
+                    fdata.write('\'')
+                    fdata.write(item.encode('utf8'))
+                    fdata.write('\'')
+                if i<len(headline)-2:
+                    fdata.write(",")
         fdata.write(");\n")
     fdata.write("\n")
 
@@ -92,6 +101,7 @@ def writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     fscheme.write(");\n\n")
         
     # insert values to table
+
     for row in data:
         fdata.write("INSERT INTO %s VALUES (" % tableName)
         for i in range (0,len(row)):
@@ -148,7 +158,7 @@ def createIndex(f,dirpath):
 # write all DB building queries into one SQL_DB file
 def createSQLTables(dir1, dir2,dir3):
     outputSchemePath="SQL_DB/musicDB_scheme.sql"
-    outputDataPath="SQL_DB/musicDB_data.sql"
+    outputDataPath="SQL_DB/musicDB_Data.sql"
     with open(outputSchemePath,'w') as fscheme:
         with open(outputDataPath,'w') as fdata:
             createDataTable(fscheme,fdata,dir1)

@@ -1,23 +1,29 @@
 
 # coding: utf-8
 
-# In[4]:
+# In[7]:
 
 import csv
 import os
+import unicodecsv
 
 
-# In[5]:
+# In[6]:
 
 # remove comma from the tables
 def cleanData(data):
     for row in data:
         for i in range (0,len(row)): #clean the data
-            row[i]=row[i].replace(',', '-')
+            row[i]=row[i].replace(',', '-') 
+            try:
+                row[i] = unicode(row[i], "utf-8")
+            except:
+                row[0]="NULL"
+                break
     return data
 
 
-# In[6]:
+# In[8]:
 
 # clean file in the dir
 def cleanFile (filename):
@@ -33,12 +39,14 @@ def cleanFile (filename):
     with open(filepath,'w') as f:
         j=0
         for row in data:
-            for item in row:
-                f.write('%s,' % item)
-            if j==0:
-                f.write('ID\n')
-            else:
-                f.write('%d\n' % j)
+            if row[0]!="NULL":
+                for item in row:
+                    f.write(item.encode('utf8'))
+                    f.write(',')
+                if j==0:
+                    f.write('ID\n')    
+                else:
+                    f.write('%d\n' % j)
             j+=1
         f.close()
 

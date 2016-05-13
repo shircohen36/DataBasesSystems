@@ -45,19 +45,10 @@ def writeRow (f,dictItem,matchedItem):
 
 #filepath ="ExcelOntologyTablesClean/MusicalArtist.csv"
 
-def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch):
-    
-    firstname=fileOne.split("/")
-    firstname=firstname[len(firstname)-1].split(".csv")[0]
-
-    secondname=fileTwo.split("/")
-    secondname=secondname[len(secondname)-1].split(".csv")[0]
-    
-    fileOutput=DirOutput+"/"+firstname+"_"+secondname+".csv" #output file
-    
-    firstname=firstname+"_ID"
-    secondname=secondname+"_ID"
-      
+def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo):
+     
+    fileOutput=DirOutput+"/"+nameOne+"_"+nameTwo+".csv" #output file
+        
     with open(fileTwo) as f:
         data = list(csv.reader(f))
         f.close
@@ -66,7 +57,7 @@ def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch):
     
     with open(fileOutput,'w') as f:
         
-        writeRow(f,firstname,secondname)
+        writeRow(f,nameOne+"_ID",nameTwo+"_ID")
         
         for labelToMatch in labelsToMatch:
             for i in range (0,len(headline)):
@@ -102,9 +93,9 @@ def writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch):
 
 # create joined files
 
-def createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch):
+def createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo):
     createDictFromFirst(fileOne)
-    writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch)
+    writeMatchFromFileTwo(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
 
 
 # In[ ]:
