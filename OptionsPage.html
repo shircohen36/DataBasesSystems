@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="MainCss.css">
     <title>options</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jqueryform.js"></script>
 </head>
 <body>
 
@@ -28,10 +30,11 @@
                     <h2>Selected genre:</h2>
                     <h2> </h2>
                     <div class ="hidden-scroll">
-                        <A HREF="#genre_info">2. Short info</A><br>
-                        <A HREF="#clips">3. Top clips</A><br>
-                        <A HREF="#artist">4. Artist of this genre</A><br>
-                        <A HREF="#suggested_genres">5. Suggested other genres</A><br>
+                        <A HREF="#genre_info">1. Short info</A><br>
+                        <A HREF="#clips">2. Top clips</A><br>
+                        <A HREF="#artist">3. Artist of this genre</A><br>
+                        <A HREF="#suggested_genres">4. Suggested other genres</A><br>
+                        <A HREF="#Suggested By Users">5. Suggested By Users</A><br>
                     </div><br><br>
                     <div class ="scroll">
                         <A NAME="genre_info">
@@ -56,7 +59,22 @@
                                     <h2></h2>
                                     <A NAME="suggested_genres">
                                         <h2>Suggested other genres:</h2>
+                                        <A NAME="Suggested By Users">
+                                            <h2>Suggested By Users:</h2>
                     </div>
+                </div>
+            </div>
+            <h3><center>Suggest A New Artist</center></h3>
+            <p></p>
+            <form><center>
+                <text font-size="3"> Artist Name:</text><br>
+                <input type="text" name="name"><br>
+                </text>Active Years:</text><br>
+                <input type="text" name="years">
+             <!--   <form action="action_page.php"> !-->
+                <p></p>
+                    <input type="submit" value="Submit">
+            </center></form>
                 </div>
             </div>
         </div>
