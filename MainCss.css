@@ -12,7 +12,7 @@ body
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-size: cover;
-   /* background-image: url(maxresdefault) repeat;*/
+    /* background-image: url(maxresdefault) repeat;*/
     font-family: 'Open Sans', sans-serif;
     font-size: 10pt;
     color: #74C5F2;
@@ -99,14 +99,28 @@ hr
     border-radius: 40px;
 }
 
+#topwrapper
+{
+    width: 920px;
+    overflow: hidden;
+    background: #FFFFFF;
+    background-image: url("note5.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,.10);
+    border-radius: 40px;
+}
+
 .container
 {
+
     width: 1000px;
     margin: 0px auto;
 }
 
 .container2
 {
+
     width: 1000px;
     margin: 0px auto;
 }
@@ -130,7 +144,7 @@ hr
 #logo
 {
     float: left;
-    width: 200px;
+    width: 500px;
     height: 100px;
 }
 
@@ -348,4 +362,13 @@ hr
     width: 800px;
     height: 300px;
     overflow: scroll;
+}
+
+.musicnotes{
+
+    width: 920px;
+    background-image: url("note5.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
