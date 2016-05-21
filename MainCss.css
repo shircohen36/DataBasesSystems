@@ -6,16 +6,16 @@ html, body
 
 body
 {
-    margin-top: 50px;
+
     padding: 0px;
     background-image: url("maxresdefault.jpg");
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-image: url(maxresdefault) repeat;*/
-    font-family: 'Open Sans', sans-serif;
+   /* background-image: url(maxresdefault) repeat;*/
+   /* font-family: 'Open Sans', sans-serif;
     font-size: 10pt;
-    color: #74C5F2;
+    color: #74C5F2;*/
 }
 
 h1, h2, h3
@@ -101,7 +101,7 @@ hr
 
 #topwrapper
 {
-    width: 920px;
+    width: 1070px;
     overflow: hidden;
     background: #FFFFFF;
     background-image: url("note5.png");
@@ -109,19 +109,39 @@ hr
     background-size: cover;
     box-shadow: 0px 0px 20px 5px rgba(0,0,0,.10);
     border-radius: 40px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    color: black;
+}
+
+
+#topwrapperabout
+{
+    width: 1070px;
+    overflow: hidden;
+    background: #FFFFFF;
+    background-image: url("about.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,.10);
+    border-radius: 40px;
+    font-family: 'Open Sans', sans-serif;
+     font-size: 15pt;
+     color: black;
+
 }
 
 .container
 {
 
-    width: 1000px;
+    width: 1150px;
     margin: 0px auto;
 }
 
 .container2
 {
 
-    width: 1000px;
+    width: 1080px;
     margin: 0px auto;
 }
 
@@ -135,7 +155,7 @@ hr
 #header
 {
     overflow: hidden;
-    width: 920px;
+    width: 1150px;
     padding: 0px 40px;
 }
 
@@ -143,10 +163,13 @@ hr
 
 #logo
 {
-    float: left;
-    width: 500px;
-    height: 100px;
+    position: relative;
+    left: 33px;
+    top: 50px;
+
 }
+
+
 
 #logo h1, #logo p
 {
@@ -154,21 +177,20 @@ hr
 
 #logo h1 a
 {
-    line-height: 100px;
-    text-decoration: none;
-    font-size: 2em;
-    font-weight: 400;
-    color: #FFFFFF;
+    line-height: 130px;
+
 }
 
 /** MENU */
 
 #menu
 {
-    float: right;
+    position: relative;
+    right: -800px;
     width: 320px;
     height: 80px;
-    margin-top: 20px;
+    margin-top: -60px;
+
     background: #8C2287;
     box-shadow: 0px 0px 10px 1px rgba(0,0,0,.10);
     border-radius: 20px 20px 0px 0px;
