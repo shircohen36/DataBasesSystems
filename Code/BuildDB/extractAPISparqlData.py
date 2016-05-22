@@ -20,23 +20,40 @@ def splitString (st):
     return [st]
 
 
-def getTableFromQuery(typeTable,let,col,langlist,toGroup):
-    headers="*"
-    const=""
-    langconst=""
-    groupByconst=""
-    sampleHeader="(Sample(?name) as ?name) "
-    colName=col.split("/")[-1]
-    if "#" in colName:
-        colName=colName.split("#")[-1]
-    const = "?type <"+col+"> ?"+colName+". "
-    if toGroup:
+def getTableFromQuery(typeTable,let,mustHaveList,optionalList,langlist):
+    strOptional=""
+    strMustHave=""
+    sampleHeader="(Sample(?type) as ?type) (Sample(?name) as ?name) (Sample(?comment) as ?comment)"
+
+    if len(mustHaveList)>0:
+         strMustHave+="{ "
+    for i in range(0,len(mustHaveList)):
+        col = mustHaveList[i]
+        colName=col.split("/")[-1]
+        if "#" in colName:
+            colName=colName.split("#")[-1]
+        strMustHave += "{ ?type <"+col+"> ?"+colName+". }"
+        if i<len(mustHaveList)-1:
+            strMustHave += " UNION "
+        if i==len(mustHaveList)-1:
+            strMustHave+=" }"
+
+    for i in range(0,len(optionalList)):
+        col = optionalList[i]
+        colName=col.split("/")[-1]
+        if "#" in colName:
+            colName=colName.split("#")[-1]
         sampleHeader+="(Sample(?"+colName+") as ?"+colName+") "
-    if toGroup:
-        groupByconst="GROUP BY ?type"
-        headers = "?type "+sampleHeader
-    if colName in langlist:
-        langconst += "FILTER langMatches(lang(?"+colName+"),"+"\"en\""+"). "
+        strOptional += "{ ?type <"+col+"> ?"+colName+". "
+        if colName in langlist:
+            strOptional += "FILTER langMatches(lang(?"+colName+"),"+"\"en\""+"). }"
+        else:
+            strOptional+="} "
+        if i<len(optionalList)-1:
+            strOptional += " UNION "
+
+    groupByconst="GROUP BY ?id"
+    headers = "?id "+sampleHeader
 
     sparql = SPARQLWrapper("http://dbpedia.org/sparql")
     sparql.setQuery("""PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -49,88 +66,101 @@ def getTableFromQuery(typeTable,let,col,langlist,toGroup):
         PREFIX dbpedia2: <http://dbpedia.org/property/>
         PREFIX dbpedia: <http://dbpedia.org/>
         PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-        SELECT """+headers+""" WHERE{
+        SELECT """+headers+"""
+        WHERE{
             ?type a dbo:"""+typeTable+""".
-            ?type foaf:name ?name. """
-            + const + """
+            ?type foaf:name ?name.
+            ?type rdfs:comment ?comment.
+            ?type <http://dbpedia.org/ontology/wikiPageID> ?id.
+            """ + strMustHave + """
+            OPTIONAL {
+                """ + strOptional + """
+                }
+            FILTER langMatches(lang(?name),"en").
+            FILTER langMatches(lang(?comment),"en").
             FILTER regex(?name,"""+let+""","i").
-            """+ langconst+"""
             }"""+groupByconst+"""
-            ORDER BY ?type
+            ORDER BY ?name
      """)
-    #print (sparql.queryString)
+   # print (sparql.queryString)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     return results
 
-def createDataTable(tableName,tableType,columnlist,langlist):
+def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
 
     tavRange=[['a','z'],['1','9']]
     dataDict=OrderedDict()
     colDict=OrderedDict()
+    colDict["type"]="NULL"
     colDict["name"]="NULL"
-
-    for col in columnlist:
-        colName=col.split("/")[-1]
-        if "#" in colName:
-            colName=colName.split("#")[-1]
-        colDict[colName]="NULL"
-
-    for col in columnlist:
-        colName=col.split("/")[-1]
-        if "#" in col:
-            colName=colName.split("#")[-1]
-
-        for rng in tavRange:
-            startR=ord(rng[0])
-            endR=ord(rng[1])+1
-            for tav in range(startR, endR):
-                let="\""+"^"+chr(tav)+"\""
-                results=getTableFromQuery(tableType,let,col,langlist,True) #return query
-
-                for result in results["results"]["bindings"]:
-                    rowurl=result["type"]["value"]
-                    rowurl=rowurl.replace(",",";")
-                    rowname=result["name"]["value"]
-                    rowname=rowname.replace(",",";")
-                    iden=rowurl
-
-                    if iden not in dataDict.keys():
-                        dataDict[iden]=colDict.copy()
-                    (dataDict[iden])["name"]=rowname
-
-                    colvalue=result[colName]["value"]
-                    colvalue=colvalue.replace(",",";")
-                    (dataDict[iden])[colName]=colvalue
-
-    print(len(dataDict.keys()))
+    colDict["comment"]="NULL"
 
     fileName="DataTables/"+tableName+".csv"
     with open(fileName,'w') as f:
 
         ## write headers ##
-        f.write("url,name,")
-        for col in columnlist:
+        f.write("wikiPageID,url,name,comment,")
+        for col in optionalList:
             colName=col.split("/")[-1]
             if "#" in colName:
                 colName=colName.split("#")[-1]
             f.write("{0},".format(colName))
         f.write("\n")
 
-        for iden in dataDict.keys():
-            try:
-                rowurl=iden.encode("utf-8")
-                f.write("{0},".format(rowurl))
-            except: #don't print line if name encoding is bad
-                continue
-            for col in dataDict[iden].keys():
-                colvalue=(dataDict[iden])[col]
-                try:
-                    colvalue=colvalue.encode("utf-8")
-                    f.write("{0},".format(colvalue))
-                except:  #don't print if encoding is bad
-                    f.write("NULL,")
-            f.write("\n")
+
+        for rng in tavRange: #write all columns for each letter
+            startR=ord(rng[0])
+            endR=ord(rng[1])+1
+
+            for tav in range(startR, endR):
+                dataDict.clear()
+                let="\""+"^"+chr(tav)+"\""
+
+                results=getTableFromQuery(tableType,let,mustHaveList,optionalList,langlist) #return query
+
+                for result in results["results"]["bindings"]:
+                    rowID=result["id"]["value"]
+                    rowurl=result["type"]["value"]
+                    rowurl=rowurl.replace(",",";")
+                    rowname=result["name"]["value"]
+                    rowname=rowname.replace(",",";")
+                    comname=result["comment"]["value"]
+                    comname=comname.replace(",",";")
+                    iden=rowID
+
+                    if iden not in dataDict.keys():
+                        dataDict[iden]=colDict.copy()
+                        (dataDict[iden])["type"]=rowurl
+                        (dataDict[iden])["name"]=rowname
+                        (dataDict[iden])["comment"]=comname
+
+                    for col in optionalList:
+                        colName=col.split("/")[-1]
+                        if "#" in col:
+                            colName=colName.split("#")[-1]
+                        try:
+                            colvalue=result[colName]["value"]
+                            colvalue=colvalue.replace(",",";")
+                            (dataDict[iden])[colName]=colvalue
+                        except:
+                            (dataDict[iden])[colName]="NULL"
+
+
+                for iden in dataDict.keys():
+                    try:
+                        rowurl=iden.encode("utf-8")
+                        f.write("{0},".format(rowurl))
+                    except: #don't print line if name encoding is bad
+                        continue
+                    for col in dataDict[iden].keys():
+                        colvalue=(dataDict[iden])[col]
+                        try:
+                            colvalue=colvalue.encode("utf-8")
+                            f.write("{0},".format(colvalue))
+                        except:  #don't print if encoding is bad
+                            f.write("NULL,")
+                    f.write("\n")
         f.close()
 
 
@@ -140,64 +170,70 @@ def createCSVTables():
 
     # tableName="MusicGenre"
     # tableType="MusicGenre"
-    # columns=["http://www.w3.org/2000/01/rdf-schema#comment"]
-    # langlist=["name","comment"]
-    # createDataTable(tableName,tableType,columns,langlist)
+    # mustHaveList=[]
+    # optionalList=[]
+    # langlist=[]
+    # createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
     # print ("Table: "+tableName+" Completed!\n")
     #
-
     # tableName="MusicalArtist"
     # tableType="MusicalArtist"
-    # columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/ontology/activeYearsStartYear",
-    #          "http://dbpedia.org/ontology/activeYearsEndYear","http://dbpedia.org/property/background",
-    #          "http://dbpedia.org/property/description","http://dbpedia.org/ontology/thumbnail"]
-    # langlist=["name","description","comment","background"]
-    # createDataTable(tableName,tableType,columns,langlist)
+    # mustHaveList=["http://dbpedia.org/property/genre"]
+    # optionalList=["http://dbpedia.org/ontology/activeYearsStartYear","http://dbpedia.org/ontology/activeYearsEndYear",
+    #          "http://dbpedia.org/property/background","http://dbpedia.org/property/description",
+    #          "http://dbpedia.org/ontology/thumbnail"]
+    # langlist=["description","background"]
+    # createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="Band"
     # tableType="Band"
-    # columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/ontology/activeYearsStartYear",
-    #          "http://dbpedia.org/ontology/activeYearsEndYear","http://dbpedia.org/property/background",
-    #          "http://dbpedia.org/ontology/thumbnail"]
-    # langlist=["name","comment","background"]
-    # createDataTable(tableName,tableType,columns,langlist)
+    # mustHaveList=["http://dbpedia.org/property/genre"]
+    # optionalList=["http://dbpedia.org/ontology/activeYearsStartYear","http://dbpedia.org/ontology/activeYearsEndYear"
+    #          "http://dbpedia.org/property/background","http://dbpedia.org/ontology/thumbnail"]
+    # langlist=["background"]
+    # createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
     # print ("Table: "+tableName+" Completed!\n")
 
     # tableName="Single"
     # tableType="Single"
-    # columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/property/Album",
-    #          "http://dbpedia.org/ontology/subsequentWork","http://dbpedia.org/ontology/previousWork",
-    #          "http://dbpedia.org/ontology/thumbnail"]
-    # langlist=["name","comment"]
-    # createDataTable(tableName,tableType,columns,langlist)
+    # mustHaveList=["http://dbpedia.org/property/genre","http://dbpedia.org/ontology/musicalBand",
+    #              "http://dbpedia.org/ontology/musicalArtist"]
+    # optionalList=["http://dbpedia.org/property/year",
+    #               "http://dbpedia.org/property/Album","http://dbpedia.org/ontology/subsequentWork",
+    #              "http://dbpedia.org/ontology/previousWork","http://dbpedia.org/ontology/thumbnail"]
+    #
+    # langlist=[]
+    # createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-    #
-    #
+
+
     # tableName="Song"
     # tableType="Song"
-    # columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/property/Album",
-    #          "http://dbpedia.org/ontology/subsequentWork","http://dbpedia.org/ontology/previousWork",
-    #          "http://dbpedia.org/ontology/thumbnail"]
+    # mustHaveList=["http://dbpedia.org/property/genre","http://dbpedia.org/property/artist"]
+    # optionalList=["http://dbpedia.org/property/year",
+    #             "http://dbpedia.org/property/Album","http://dbpedia.org/ontology/subsequentWork",
+    #              "http://dbpedia.org/ontology/previousWork","http://dbpedia.org/ontology/thumbnail"]
+    # langlist=[]
+    # createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
+    # print ("Table: "+tableName+" Completed!\n")
+
+    # tableName="Album"
+    # tableType="Album"
+    # columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/property/type",
+    #          "http://dbpedia.org/property/year","http://dbpedia.org/property/released",
+    #          "http://dbpedia.org/property/lastAlbum","http://dbpedia.org/property/nextAlbum"]
     # langlist=["name","comment"]
     # createDataTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
-    tableName="Album"
-    tableType="Album"
-    columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/ontology/subsequentWork",
-             "http://dbpedia.org/ontology/previousWork"]
-    langlist=["name","comment"]
-    createDataTable(tableName,tableType,columns,langlist)
-    print ("Table: "+tableName+" Completed!\n")
-
-    tableName="ClassicalMusicComposition"
-    tableType="ClassicalMusicComposition"
-    columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/property/composer",
-             "http://dbpedia.org/property/year"]
-    langlist=["name","comment"]
-    createDataTable(tableName,tableType,columns,langlist)
-    print ("Table: "+tableName+" Completed!\n")
+    # #
+    # tableName="ClassicalMusicComposition"
+    # tableType="ClassicalMusicComposition"
+    # columns=["http://www.w3.org/2000/01/rdf-schema#comment","http://dbpedia.org/property/composer",
+    #          "http://dbpedia.org/property/year"]
+    # langlist=["name","comment"]
+    # createDataTable(tableName,tableType,columns,langlist)
+    # print ("Table: "+tableName+" Completed!\n")
 
     print ("\nAll Tables Were Successfully Created!\n")
 
