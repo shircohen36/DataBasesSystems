@@ -30,17 +30,13 @@ def cleanData(data):
 
 
 # clean file in the dir
-def cleanFile (filename,withID):
-    dirpath="DataTables"
-    filepath=dirpath+"/"+filename
-    with open(filepath) as f:
+def cleanFile (filePath,outputPath,withID):
+    with open(filePath) as f:
         data = list(csv.reader(f))
         f.close
     data=cleanData(data)
     data.reverse
-    newdirpath="DataTablesClean"
-    filepath=newdirpath+"/"+filename
-    with open(filepath,'w') as f:
+    with open(outputPath,'w') as f:
         j=0
         for row in data:
             if row[0]!="NULL":
