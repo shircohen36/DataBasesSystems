@@ -8,8 +8,6 @@ import os
 import unicodecsv
 
 
-# In[6]:
-
 # remove comma from the tables
 def cleanData(data):
     dict={} #list of wiki page IDs
@@ -31,10 +29,8 @@ def cleanData(data):
     return data
 
 
-# In[8]:
-
 # clean file in the dir
-def cleanFile (filename):
+def cleanFile (filename,withID):
     dirpath="DataTables"
     filepath=dirpath+"/"+filename
     with open(filepath) as f:
@@ -51,17 +47,16 @@ def cleanFile (filename):
                 for i in range(0,len(row)):
                     item = row[i]
                     f.write(item.encode('utf8'))
-                    if (i<len(row)-1):
-                        f.write(',')
-                if j==0:
-                    f.write('ID\n')    
+                    f.write(',')
+                if withID:
+                    if j==0:
+                        f.write('ID\n')    
+                    else:
+                        f.write('%d\n' % j)
+                    j+=1
                 else:
-                    f.write('%d\n' % j)
-            j+=1
+                    f.write('\n')
         f.close()
-
-
-# In[ ]:
 
 
 
