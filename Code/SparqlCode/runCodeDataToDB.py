@@ -19,7 +19,7 @@ import createMySQLTableFromCSV
 # Clean tables
 print ("Cleaning Tables...\n")
 
-# cleanDataAddID.cleanFile("MusicGenre.csv")
+# cleanDataAddID.cleanFile("DataTables/MusicGenre.csv","DataTablesClean/MusicGenre.csv",True)
 # cleanDataAddID.cleanFile("MusicalArtist.csv")
 # cleanDataAddID.cleanFile("Band.csv")
 # cleanDataAddID.cleanFile("Album.csv")
