@@ -12,14 +12,22 @@ import unicodecsv
 
 # remove comma from the tables
 def cleanData(data):
+    dict={} #list of wiki page IDs
     for row in data:
         for i in range (0,len(row)): #clean the data
            # row[i]=row[i].replace(',', '-')
+            if row[0] in dict: #delete double values
+                row[0]="NULL"
+                break
             try:
                 row[i] = unicode(row[i], "utf-8")
             except:
                 row[0]="NULL"
                 break
+            if row[i]=="" or row[i]==" ": #clean out defected rows
+                row[0]="NULL"
+                break
+            dict.update(row[0])
     return data
 
 
