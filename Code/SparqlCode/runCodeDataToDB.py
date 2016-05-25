@@ -13,8 +13,8 @@ import createMySQLTableFromCSV
 # Get DBPedia APIs and create CSV tables
 print ("Extracting APIs Data...\n")
 #
-# #extractAPISparqlData.createCSVTables()
-# #extractAPISparqlRelation.createCSVTables()
+# extractAPISparqlData.createCSVTables()
+# extractAPISparqlRelation.createCSVTables()
 #
 # Clean tables
 print ("Cleaning Tables...\n")
@@ -47,7 +47,7 @@ print ("Creating ID Relation Tables...\n")
 # createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenre","RelationTables","MusicGenre_MusicFusionGenre","RelationTablesID","MusicGenre_MusicFusionGenre")
 # createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenre","RelationTables","MusicGenre_MusicStylisticOriginGenre","RelationTablesID","MusicGenre_MusicStylisticOriginGenre")
 # createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenre","RelationTables","MusicGenre_MusicSubGenre","RelationTablesID","MusicGenre_MusicSubGenre")
-#
+
 # createRelationTablesByID.createByID("DataTablesClean","Songs","MusicalArtist","RelationTables","Songs_Artists","RelationTablesID","Songs_MusicalArtist")
 # createRelationTablesByID.createByID("DataTablesClean","Songs","Band","RelationTables","Songs_Artists","RelationTablesID","Songs_Band")
 # createRelationTablesByID.createByID("DataTablesClean","Album","MusicalArtist","RelationTables","Album_Artists","RelationTablesID","Album_MusicalArtist")

@@ -15,7 +15,8 @@ def insertToDict (data,dict):
         if headline[i]=="ID":
             idIndex=i
     if nameIndex<0 or idIndex<0:
-        print ("Error!\n")
+        print ("Error: file's headline not as expected!\n")
+        print (headline)
         exit(0)
     for row in data:
         try:
@@ -23,6 +24,7 @@ def insertToDict (data,dict):
             id=row[idIndex]
             dict[name]=id
         except:
+            print ("Error: defected row!\n")
             print(row)
             exit(0)
     return dict

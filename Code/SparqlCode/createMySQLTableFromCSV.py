@@ -26,8 +26,8 @@ def checkType(data):
                         valueTypeArray[i]=1
                     valueTypeArray[i]=max(valueTypeArray[i],len(item))
                 except:
+                    print("Error: defected row. row is too short!\n")
                     print(row)
-                    print("\n")
                     exit(0)
     return valueTypeArray
 
