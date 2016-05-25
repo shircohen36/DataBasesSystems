@@ -1,57 +1,50 @@
-
 # coding: utf-8
-
-# In[7]:
 
 import csv
 import os
 import unicodecsv
-
-
-# In[6]:
+from sets import Set
 
 # remove comma from the tables
 def cleanData(data):
+    idKeys=Set() #list of wiki page IDs
+    headline=data[0]
     for row in data:
-        for i in range (0,len(row)): #clean the data
-            row[i]=row[i].replace(',', '-') 
-            try:
-                row[i] = unicode(row[i], "utf-8")
-            except:
-                row[0]="NULL"
-                break
+        if (row[0] in idKeys) or (len(row)!=len(headline)): #delete double values and defected rows
+            row[0]="NULL"
+        else:
+            idKeys.add(row[0])
     return data
 
 
-# In[8]:
-
 # clean file in the dir
-def cleanFile (filename):
-    dirpath="ExcelOntologyTables"
-    filepath=dirpath+"/"+filename
-    with open(filepath) as f:
+def cleanFunc(filePath,outputPath,withID):
+    with open(filePath) as f:
         data = list(csv.reader(f))
         f.close
     data=cleanData(data)
-    data.reverse
-    newdirpath="ExcelOntologyTablesClean"
-    filepath=newdirpath+"/"+filename
-    with open(filepath,'w') as f:
+    headline=data[0]
+    with open(outputPath,'w') as f:
         j=0
         for row in data:
             if row[0]!="NULL":
-                for item in row:
-                    f.write(item.encode('utf8'))
-                    f.write(',')
-                if j==0:
-                    f.write('ID\n')    
+                for i in range(0,len(headline)-1):
+                    item = row[i]
+                    f.write("{0}".format(item))
+                    if i<(len(headline)-2):
+                        f.write(',')
+                if withID:
+                    if j==0:
+                        f.write(',ID\n')
+                    else:
+                        f.write(',%d\n' % j)
+                    j+=1
                 else:
-                    f.write('%d\n' % j)
-            j+=1
+                    f.write('\n')
         f.close()
 
-
-# In[ ]:
-
-
-
+def cleanFile(fileName,withID):
+    filePath="DataTables"+"/"+fileName+".csv"
+    outputPath="DataTablesClean"+"/"+fileName+".csv"
+    cleanFunc(filePath,outputPath,withID)
+    cleanFunc(outputPath,outputPath,withID)

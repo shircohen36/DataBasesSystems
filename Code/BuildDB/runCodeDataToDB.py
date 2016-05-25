@@ -1,220 +1,74 @@
 
 # coding: utf-8
 
-# In[1]:
-
+import extractAPISparqlData
+import extractAPISparqlRelation
 import cleanDataAddID
-import createFileMatchByID
+import combineTwoTablesToOne
+import createRelationTablesByID
+import findTopGenres
 import createMySQLTableFromCSV
 
 
-# In[6]:
+# Get DBPedia APIs and create CSV tables
+print ("Extracting APIs Data...\n")
+#
+# extractAPISparqlData.createCSVTables()
+# extractAPISparqlRelation.createCSVTables()
+#
+# Clean tables
 
-cleanDataAddID.cleanFile("MusicGenre.csv")
-cleanDataAddID.cleanFile("MusicalArtist.csv")
-cleanDataAddID.cleanFile("Band.csv")
-cleanDataAddID.cleanFile("Single.csv")
-cleanDataAddID.cleanFile("Song.csv")
-cleanDataAddID.cleanFile("Album.csv")
-cleanDataAddID.cleanFile("ClassicalMusicComposition.csv")
+print ("Finding Top Genres...\n")
 
+findTopGenres.createTopGenre()
 
-# In[7]:
+print ("Cleaning Tables...\n")
 
-# find genres in fileTwo
+cleanDataAddID.cleanFile("MusicGenre",True)
+cleanDataAddID.cleanFile("MusicalArtist",True)
+cleanDataAddID.cleanFile("Band",True)
+cleanDataAddID.cleanFile("Album",True)
+cleanDataAddID.cleanFile("ClassicalMusicComposition",True)
+cleanDataAddID.cleanFile("Single",False)
+cleanDataAddID.cleanFile("Song",False)
+cleanDataAddID.cleanFile("MusicGenreTop",True)
 
-createFileMatchByID
+# Combine tables
+print ("Combining Tables...\n")
 
-fileOne="ExcelOntologyTablesClean/MusicGenre.csv"
-nameOne="MusicGenre"
-DirOutput="ExcelOntologyTablesMatch"
+combineTwoTablesToOne.combineTwoWithID("DataTablesClean","DataTablesClean","Song","Single","Songs")
 
-labelsToMatch=list()
-labelsToMatch.append("genre")
+combineTwoTablesToOne.combineTwo("RelationTables","RelationTables","Song_Artists","Single_Artists","Songs_Artists")
+combineTwoTablesToOne.combineTwo("RelationTables","RelationTables","Song_MusicGenre","Single_MusicGenre","Songs_MusicGenre")
 
-filesToMatch=list()
-filesToMatch.append("MusicalArtist")
-filesToMatch.append("Band")
-filesToMatch.append("Single")
-filesToMatch.append("Song")
-filesToMatch.append("Album")
-filesToMatch.append("ClassicalMusicComposition")
+# Create ID relation tables
+print ("Creating ID Relation Tables...\n")
 
-for filename in filesToMatch:
-    fileTwo="ExcelOntologyTablesClean/"+filename+".csv"
-    nameTwo=filename
-    createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
+createRelationTablesByID.createByID("DataTablesClean","MusicalArtist","MusicGenre","RelationTables","MusicalArtist_MusicGenre","RelationTablesID","MusicalArtist_MusicGenre")
+createRelationTablesByID.createByID("DataTablesClean","Songs","MusicGenre","RelationTables","Songs_MusicGenre","RelationTablesID","Songs_MusicGenre")
+createRelationTablesByID.createByID("DataTablesClean","Album","MusicGenre","RelationTables","Album_MusicGenre","RelationTablesID","Album_MusicGenre")
+createRelationTablesByID.createByID("DataTablesClean","Band","MusicGenre","RelationTables","Band_MusicGenre","RelationTablesID","Band_MusicGenre")
 
+createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenreTop","RelationTables","MusicGenre_MusicGenreTop","RelationTablesID","MusicGenre_MusicGenreTop")
+createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenre","RelationTables","MusicGenre_MusicDerivativeGenre","RelationTablesID","MusicGenre_MusicDerivativeGenre")
+createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenre","RelationTables","MusicGenre_MusicFusionGenre","RelationTablesID","MusicGenre_MusicFusionGenre")
+createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenre","RelationTables","MusicGenre_MusicStylisticOriginGenre","RelationTablesID","MusicGenre_MusicStylisticOriginGenre")
+createRelationTablesByID.createByID("DataTablesClean","MusicGenre","MusicGenre","RelationTables","MusicGenre_MusicSubGenre","RelationTablesID","MusicGenre_MusicSubGenre")
 
-# In[8]:
+createRelationTablesByID.createByID("DataTablesClean","Songs","MusicalArtist","RelationTables","Songs_Artists","RelationTablesID","Songs_MusicalArtist")
+createRelationTablesByID.createByID("DataTablesClean","Songs","Band","RelationTables","Songs_Artists","RelationTablesID","Songs_Band")
+createRelationTablesByID.createByID("DataTablesClean","Album","MusicalArtist","RelationTables","Album_Artists","RelationTablesID","Album_MusicalArtist")
+createRelationTablesByID.createByID("DataTablesClean","Album","Band","RelationTables","Album_Artists","RelationTablesID","Album_Band")
 
-# connect genre to genre categories
+createRelationTablesByID.createByID("DataTablesClean","Band","MusicalArtist","RelationTables","Band_BandMembers","RelationTablesID","Band_MusicalArtist")
 
-createFileMatchByID
+# # # Create SQL schema and data
+print ("Creating SQL files...\n")
 
-fileOne="ExcelOntologyTablesClean/MusicGenre.csv"
-fileTwo="ExcelOntologyTablesClean/MusicGenre.csv"
-nameOne="MusicGenre"
-DirOutput="ExcelOntologyTablesMatch"
+createMySQLTableFromCSV.createSQLTables("DataTablesClean","RelationTablesID","DataTablesClean")
 
-nameTwo="MusicSubGenre"
-labelsToMatch=list()
-labelsToMatch.append("musicSubgenre")
+print ("Process Successfully Finished!\n")
 
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-nameTwo="MusicStylisticOriginGenre"
-labelsToMatch=list()
-labelsToMatch.append("stylisticOrigin")
-
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-nameTwo="MusicDerivativeGenre"
-labelsToMatch=list()
-labelsToMatch.append("derivative")
-
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-nameTwo="MusicFusionGenre"
-labelsToMatch=list()
-labelsToMatch.append("musicFusionGenre")
-
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-
-# In[5]:
-
-# find artists/bands in Single
-
-createFileMatchByID
-
-fileTwo="ExcelOntologyTablesClean/Single.csv"
-nameTwo="Single"
-DirOutput="ExcelOntologyTablesMatch"
-
-labelsToMatch=list()
-labelsToMatch.append("musicalArtist")
-labelsToMatch.append("artist")
-labelsToMatch.append("musicalBand")
-
-filesToMatch=list()
-filesToMatch.append("MusicalArtist")
-filesToMatch.append("Band")
-
-for filename in filesToMatch:
-    fileOne="ExcelOntologyTablesClean/"+filename+".csv"
-    nameOne=filename
-    createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-
-# In[6]:
-
-# find artists/bands/composers in Song
-
-createFileMatchByID
-
-fileTwo="ExcelOntologyTablesClean/Song.csv"
-nameTwo="Song"
-DirOutput="ExcelOntologyTablesMatch"
-
-labelsToMatch=list()
-labelsToMatch.append("artist")
-labelsToMatch.append("composer")
-
-filesToMatch=list()
-filesToMatch.append("MusicalArtist")
-filesToMatch.append("Band")
-
-for filename in filesToMatch:
-    fileOne="ExcelOntologyTablesClean/"+filename+".csv"
-    nameOne=filename
-    createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-
-# In[7]:
-
-# find artists/bands/composers in Album
-
-createFileMatchByID
-
-fileTwo="ExcelOntologyTablesClean/Album.csv"
-nameTwo="Album"
-DirOutput="ExcelOntologyTablesMatch"
-
-labelsToMatch=list()
-labelsToMatch.append("artist")
-labelsToMatch.append("associatedBand")
-labelsToMatch.append("associatedMusicalArtist")
-labelsToMatch.append("bandMember")
-labelsToMatch.append("compiler")
-labelsToMatch.append("formerBandMember")
-labelsToMatch.append("musicalArtist")
-labelsToMatch.append("musicalBand")
-
-filesToMatch=list()
-filesToMatch.append("MusicalArtist")
-filesToMatch.append("Band")
-
-for filename in filesToMatch:
-    fileOne="ExcelOntologyTablesClean/"+filename+".csv"
-    nameOne=filename
-    createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-
-# In[8]:
-
-# find Album in fileTwo
-
-createFileMatchByID
-
-fileOne="ExcelOntologyTablesClean/Album.csv"
-nameOne="Album"
-DirOutput="ExcelOntologyTablesMatch"
-
-labelsToMatch=list()
-labelsToMatch.append("album")
-
-filesToMatch=list()
-filesToMatch.append("Single")
-filesToMatch.append("Song")
-
-for filename in filesToMatch:
-    fileTwo="ExcelOntologyTablesClean/"+filename+".csv"
-    nameTwo=filename
-    createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-
-# In[9]:
-
-#connect band to artists
-
-createFileMatchByID
-
-fileOne="ExcelOntologyTablesClean/MusicalArtist.csv"
-nameOne="MusicalArtist"
-fileTwo="ExcelOntologyTablesClean/Band.csv"
-nameTwo="Band"
-DirOutput="ExcelOntologyTablesMatch"
-
-labelsToMatch=list()
-labelsToMatch.append("bandMember")
-labelsToMatch.append("currentMember")
-labelsToMatch.append("formerBandMember")
-labelsToMatch.append("pastMember")
-labelsToMatch.append("associatedMusicalArtist")
-labelsToMatch.append("associatedMusicalBand")
-
-createFileMatchByID.createJoinTableByID(fileOne,fileTwo,DirOutput,labelsToMatch,nameOne,nameTwo)
-
-
-# In[2]:
-
-createMySQLTableFromCSV
-
-createMySQLTableFromCSV.createSQLTables("ExcelOntologyTablesClean","ExcelOntologyTablesMatch","ExcelOntologyTablesClean")
-
-
-# In[ ]:
 
 
 

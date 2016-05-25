@@ -21,9 +21,14 @@ def checkType(data):
             try: 
                 int(item)
             except ValueError:
-                if valueTypeArray[i]==0:
-                    valueTypeArray[i]=1
-                valueTypeArray[i]=max(valueTypeArray[i],len(item)) 
+                try:
+                    if valueTypeArray[i]==0:
+                        valueTypeArray[i]=1
+                    valueTypeArray[i]=max(valueTypeArray[i],len(item))
+                except:
+                    print("Error: defected row. row is too short!\n")
+                    print(row)
+                    exit(0)
     return valueTypeArray
 
 
@@ -32,7 +37,7 @@ def checkType(data):
 # write the sql file from data file
 def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     
-    fscheme.write("CREATE TABLE %s (\n" % tableName)
+    fscheme.write("CREATE TABLE {0} (\n".format(tableName))
     headline=data.pop(0)
         
     # create table
@@ -40,10 +45,10 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     for i in range (0,len(headline)-1):
         item=headline[i]
         if valueTypeArray[i]==0:
-            fscheme.write("\t%s INT,\n" % item)
+            fscheme.write("\t{0} INT,\n".format(item))
         else:
             if "comment" in item or "discription" in item or valueTypeArray[i]>1500:
-                fscheme.write("\t%s TEXT,\n" % item)
+                fscheme.write("\t{0} TEXT,\n".format(item))
             elif item=="name":
                 valueTypeArray[i]+=16
                 fscheme.write("\t{0} VARCHAR({1}) NOT NULL,\n".format(item,valueTypeArray[i]))
@@ -55,15 +60,15 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
         
     # insert values to table    
     for row in data:
-        fdata.write("INSERT INTO %s VALUES (NULL," % tableName)
         printrow=True
-        for i in range (0,len(row)-1):
-            try:
-                row[i] = unicode(row[i],"utf-8")
+        for item in row:
+            try: # check encoding of row
+                item.encode('utf8')
             except:
                 printrow=False
                 break
         if printrow:
+            fdata.write("INSERT INTO {0} VALUES (NULL,".format(tableName))
             for i in range (0,len(row)-1):
                 item=row[i]
                 item=item.replace("\'","\''")
@@ -76,7 +81,7 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
                     fdata.write('\'')
                 if i<len(headline)-2:
                     fdata.write(",")
-        fdata.write(");\n")
+            fdata.write(");\n")
     fdata.write("\n")
 
 
@@ -85,15 +90,17 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
 # write the sql file from match file
 def writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
    
-    fscheme.write("CREATE TABLE %s (\n" % tableName)
+    fscheme.write("CREATE TABLE {0} (\n".format(tableName))
     headline=data.pop(0)
         
     # create table
     for i in range (0,len(headline)):
         item=headline[i]
-        fscheme.write("\t%s INT\n" % item)
-        refTable=item.split("_ID")[0]
-        fscheme.write("\t\tREFERENCES %s(ID)" % refTable)
+        fscheme.write("\t{0} INT\n".format(item))
+        refTable=tableName.split("_")[i]
+        if "Genre" in refTable and "Top" not in refTable:
+            refTable="MusicGenre"
+        fscheme.write("\t\tREFERENCES {0}(ID)".format(refTable))
         if i<len(headline)-1:
             fscheme.write (',\n')
         else:
@@ -103,7 +110,7 @@ def writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     # insert values to table
 
     for row in data:
-        fdata.write("INSERT INTO %s VALUES (" % tableName)
+        fdata.write("INSERT INTO {0} VALUES (".format(tableName))
         for i in range (0,len(row)):
             item=row[i]
             item=int(item)
@@ -121,6 +128,8 @@ def createDataTable(fscheme,fdata,dirpath):
     for filename in os.listdir(dirpath):
         filepath=dirpath+'/'+filename
         tableName=filename.split('.csv')[0]
+        if tableName == "Song" or tableName == "Single":
+            continue
         with open(filepath) as f2:
             data = list(csv.reader(f2))
             data.reverse
@@ -149,14 +158,17 @@ def createMatchTable(fscheme,fdata,dirpath):
 # write index file
 def createIndex(f,dirpath):
         for filename in os.listdir(dirpath):
+            field="name"
             tableName=filename.split('.csv')[0]
-            f.write("CREATE INDEX nameIndex ON %s(name);\n" % tableName)       
+            if "Classical" in filename:
+                field="cname"
+            f.write("CREATE INDEX nameIndex ON {0}({1});\n".format(tableName,field))
 
 
 # In[ ]:
 
 # write all DB building queries into one SQL_DB file
-def createSQLTables(dir1, dir2,dir3):
+def createSQLTables(dir1 ,dir2 ,dir3):
     outputSchemePath="SQL_DB/musicDB_schema.sql"
     outputDataPath="SQL_DB/musicDB_data.sql"
     with open(outputSchemePath,'w') as fscheme:
@@ -166,4 +178,3 @@ def createSQLTables(dir1, dir2,dir3):
             createIndex(fscheme,dir3)
             fdata.close
         fscheme.close
-
