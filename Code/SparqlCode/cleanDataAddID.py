@@ -1,58 +1,50 @@
-
 # coding: utf-8
-
-# In[7]:
 
 import csv
 import os
 import unicodecsv
-
+from sets import Set
 
 # remove comma from the tables
 def cleanData(data):
-    dict={} #list of wiki page IDs
+    idKeys=Set() #list of wiki page IDs
+    headline=data[0]
     for row in data:
-        for i in range (0,len(row)): #clean the data
-           # row[i]=row[i].replace(',', '-')
-            if row[0] in dict: #delete double values
-                row[0]="NULL"
-                break
-            try:
-                row[i] = unicode(row[i], "utf-8")
-            except:
-                row[0]="NULL"
-                break
-            if row[i]=="" or row[i]==" ": #clean out defected rows
-                row[0]="NULL"
-                break
-            dict.update(row[0])
+        if (row[0] in idKeys) or (len(row)!=len(headline)): #delete double values and defected rows
+            row[0]="NULL"
+        else:
+            idKeys.add(row[0])
     return data
 
 
 # clean file in the dir
-def cleanFile (filePath,outputPath,withID):
+def cleanFunc(filePath,outputPath,withID):
     with open(filePath) as f:
         data = list(csv.reader(f))
         f.close
     data=cleanData(data)
-    data.reverse
+    headline=data[0]
     with open(outputPath,'w') as f:
         j=0
         for row in data:
             if row[0]!="NULL":
-                for i in range(0,len(row)):
+                for i in range(0,len(headline)-1):
                     item = row[i]
-                    f.write(item.encode('utf8'))
-                    f.write(',')
+                    f.write("{0}".format(item))
+                    if i<(len(headline)-2):
+                        f.write(',')
                 if withID:
                     if j==0:
-                        f.write('ID\n')    
+                        f.write(',ID\n')
                     else:
-                        f.write('%d\n' % j)
+                        f.write(',%d\n' % j)
                     j+=1
                 else:
                     f.write('\n')
         f.close()
 
-
-
+def cleanFile(fileName,withID):
+    filePath="DataTables"+"/"+fileName+".csv"
+    outputPath="DataTablesClean"+"/"+fileName+".csv"
+    cleanFunc(filePath,outputPath,withID)
+    cleanFunc(outputPath,outputPath,withID)

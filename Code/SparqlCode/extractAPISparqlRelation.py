@@ -149,36 +149,41 @@ def createCSVTables():
 
     # tableName="MusicalArtist_MusicGenre"
     # tableType="MusicalArtist"
-    # columns=["http://dbpedia.org/property/genre"]
-    # langlist=["name","genre"]
+    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="Band_MusicGenre"
     # tableType="Band"
-    # columns=["http://dbpedia.org/property/genre"]
-    # langlist=["name","genre"]
+    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
     #
     # tableName="Song_MusicGenre"
     # tableType="Song"
-    # columns=["http://dbpedia.org/property/genre"]
-    # langlist=["name","genre"]
+    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
     #
     # tableName="Single_MusicGenre"
     # tableType="Single"
-    # columns=["http://dbpedia.org/property/genre"]
-    # langlist=["name","genre"]
+    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="Album_MusicGenre"
     # tableType="Album"
-    # columns=["http://dbpedia.org/property/genre"]
-    # langlist=["name","genre"]
+    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
 

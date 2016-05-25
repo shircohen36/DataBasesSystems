@@ -24,6 +24,7 @@ def insertToDict (data,dict):
             dict[name]=id
         except:
             print(row)
+            exit(0)
     return dict
 
 
@@ -54,8 +55,8 @@ def createByID(DataDir,fileData1,fileData2,relDir,fileRelation,DirOutput,fileOut
     with open(fileOutput,'w') as f:
         f.write("{0},{1}\n".format(headline[0],headline[1]))
         for row in datar:
-            if row[0] in dict1.keys():
-                if row[1] in dict2.keys():
+            if row[0] in dict1:
+                if row[1] in dict2:
                     id1=dict1[row[0]]
                     id2=dict2[row[1]]
                     f.write("{0},{1}\n".format(id1,id2))
