@@ -145,6 +145,8 @@ def createMatchTable(fscheme,fdata,dirpath):
     for filename in os.listdir(dirpath):
         filepath=dirpath+'/'+filename
         tableName=filename.split('.csv')[0]
+        if tableName == "Song" or tableName == "Single":
+            continue
         with open(filepath) as f2:
             data = list(csv.reader(f2))
             data.reverse
@@ -158,8 +160,10 @@ def createMatchTable(fscheme,fdata,dirpath):
 # write index file
 def createIndex(f,dirpath):
         for filename in os.listdir(dirpath):
-            field="name"
             tableName=filename.split('.csv')[0]
+            if tableName == "Song" or tableName == "Single":
+                continue
+            field="name"
             if "Classical" in filename:
                 field="cname"
             f.write("CREATE INDEX nameIndex ON {0}({1});\n".format(tableName,field))
