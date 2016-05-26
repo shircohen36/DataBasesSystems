@@ -164,8 +164,6 @@ def createIndex(f,dirpath):
             if tableName == "Song" or tableName == "Single":
                 continue
             field="name"
-            if "Classical" in filename:
-                field="cname"
             f.write("CREATE INDEX nameIndex ON {0}({1});\n".format(tableName,field))
 
 

@@ -13,14 +13,11 @@ import createMySQLTableFromCSV
 # Get DBPedia APIs and create CSV tables
 print ("Extracting APIs Data...\n")
 #
-# extractAPISparqlData.createCSVTables()
-# extractAPISparqlRelation.createCSVTables()
+# # extractAPISparqlData.createCSVTables()
+# # extractAPISparqlRelation.createCSVTables()
 #
+
 # Clean tables
-
-print ("Finding Top Genres...\n")
-
-findTopGenres.createTopGenre()
 
 print ("Cleaning Tables...\n")
 
@@ -31,6 +28,9 @@ cleanDataAddID.cleanFile("Album",True)
 cleanDataAddID.cleanFile("ClassicalMusicComposition",True)
 cleanDataAddID.cleanFile("Single",False)
 cleanDataAddID.cleanFile("Song",False)
+
+print ("Finding Top Genres...\n")
+findTopGenres.createTopGenre()
 cleanDataAddID.cleanFile("MusicGenreTop",True)
 
 # Combine tables
@@ -62,7 +62,7 @@ createRelationTablesByID.createByID("DataTablesClean","Album","Band","RelationTa
 
 createRelationTablesByID.createByID("DataTablesClean","Band","MusicalArtist","RelationTables","Band_BandMembers","RelationTablesID","Band_MusicalArtist")
 
-# # # Create SQL schema and data
+# Create SQL schema and data
 print ("Creating SQL files...\n")
 
 createMySQLTableFromCSV.createSQLTables("DataTablesClean","RelationTablesID","DataTablesClean")

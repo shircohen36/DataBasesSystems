@@ -15,8 +15,9 @@ dictSub=OrderedDict()
 
 topGenres=['Pop','Rock','Classical','Metal','Hip hop','Rap','Reggae','Jazz','House','Folk','Country','Disco','Soul','Techno',
            'Blues','A cappella','Afro','African','Acid','New age','New wave','Gospel','Apala','Ambient','Hardcore','Latin',
-           'Punc','Punk','Funk','Tradition','World','Electronic','Swing','Industrial','Samba','Noise','Groov','Dance','Chant','Soca',
-           'National','Thrash','Soundtrack','Lo-fi','Ancient','Religio','Prayer','Garage','Wedding','Experimental','Boogie']
+           'Punc','Punk','Funk','Tradition','World','Electro','Swing','Industrial','Samba','Noise','Groov','Dance','Chant','Soca',
+           'National','Thrash','Soundtrack','Lo-fi','Ancient','Religio','Prayer','Garage','Wedding','Experimental','Boogie',
+           'Calypso','Celtic','Indie','Indo']
 
 def insertToDict (filepath,dict):
     with open(filepath) as f:
@@ -88,6 +89,12 @@ def fixGenre(item):
         return "Rock"
     if item == "Afro":
         return "African"
+    if item == "Elctro":
+        return "Electronic"
+    if item == "Indo":
+        return "Indie"
+    if item == "Soca":
+        return "Caribbean"
     return item
 
 
@@ -148,4 +155,5 @@ def createTopGenre():
             for item in topGenreRow:
                 item=fixGenre(item)
                 f.write("{0},{1}\n".format(row[nameIdx],item))
+        f.write("Classical music composition,Classical\n")
         f.close
