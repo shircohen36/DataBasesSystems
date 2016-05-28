@@ -1,0 +1,3068 @@
+@font-face {
+    font-family: 'FbSpoiler';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/css/fonts/spoilerregularwebfont.eot');
+    src: url('/css/fonts/spoilerregularwebfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/spoilerregularwebfont.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'FbSpoiler-Bold';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/css/fonts/spoilerboldwebfont.eot');
+    src: url('/css/fonts/spoilerboldwebfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/spoilerboldwebfont.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'FbSpoiler-Black';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/css/fonts/spoilerblackwebfont.eot');
+    src: url('/css/fonts/spoilerblackwebfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/spoilerblackwebfont.ttf') format('truetype');
+}
+#overlay {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    background: #000;
+    width: 100%;
+    height: 200%;
+    position: absolute;
+    z-index: 9999;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+}
+#float_box .TellAFriend {
+    z-index: 9999999;
+    position: absolute;
+    top: 18%;
+    left: 29%;
+    background: none;
+    direction: rtl;
+}
+body {
+    background: #fff;
+    font-size: 12px;
+    font-family: arial;
+    color: #000;
+    margin:0px;
+    /*border:1px solid black;*/
+}
+
+#wrapper
+{
+    direction: rtl;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+img {
+    border: 0px;
+}
+
+.clear {
+    clear: both;
+}
+
+form {
+    margin: 0 auto;
+}
+
+input.text {
+    border: 0px;
+    width: 166px;
+    height: 26px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/input.png) no-repeat;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: arial;
+    color: #484848;
+    text-indent: 5px;
+}
+
+input.register {
+    border: 0px;
+    width: 94px;
+    height: 30px;
+    margin-top: 0px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/register_button.png) no-repeat;
+}
+
+
+
+
+.blue_bold {
+    color: #047abc;
+    font-weight: normal;
+    font-size: 17px;
+    text-decoration:none;
+    font-family: FbSpoiler;
+}
+.orange_bold {
+    color: #047abc;
+    font-weight: normal;
+    font-size: 17px;
+    text-decoration: none;
+    font-family: FbSpoiler;
+}
+
+#wrap {
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    direction: rtl;
+}
+
+#header {
+    margin: 15px auto 0 0;
+
+}
+#header .headerLogo_ToolBar{
+    width: 980px;
+    margin: 0 auto 13px auto;
+    position: relative;
+}
+
+#header .headerLogo_ToolBar .logo {
+    display: inline-block;
+}
+
+#header .top_menu {
+    width: 100%;
+    background-color: #047abc;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#header .top_menu ul {
+    margin: 0 auto;
+    padding: 0px;
+    width: 980px;
+    line-height: 47px;
+    height: 47px;
+    vertical-align: middle;
+    display: block;
+}
+
+#header .top_menu ul li {
+    list-style: none;
+    float: right;
+    padding: 0;
+    margin: 0 0 0 30px;
+    text-align: center;
+    /*margin-left: 30px;*/
+}
+
+#header .top_menu ul li#accessibility {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#header .top_menu ul li#accessibility a {
+    font-size: 12px;
+    font-family: arial;
+    font-weight: normal;
+    color: #ffffff;
+    text-decoration: none;
+    background: none;
+    display: block;
+    cursor: pointer;
+    margin-left: 20px;
+}
+#header .top_menu ul li#contactUs {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+#header .top_menu ul li#contactUs a {
+    font-size: 12px;
+    font-family: arial;
+    font-weight: normal;
+    color: #ffffff;
+    text-decoration: none;
+    background: none;
+    display: block;
+    cursor: pointer;
+}
+
+#header .top_menu ul li a {
+    font-size: 20px;
+    font-family: 'FbSpoiler';
+    font-weight: normal;
+    color: #ffffff;
+    text-decoration: none;
+    background: none;
+    display: block;
+}
+
+#header .top_menu ul li a span {
+    cursor: pointer;
+}
+
+#header .top_menu ul li a span.center {
+    height: 35px;
+    background: none;
+    text-align: center;
+    padding-right: 8px;
+    padding-left: 0px;
+
+}
+#header .top_menu ul li a span.center .fa-home{
+    color: #ffffff;
+    font-size: 14px;
+}
+#header .top_menu ul li a.active span.center .fa-home{
+    color: #000000;
+    font-size: 14px;
+}
+
+#header .top_menu ul li a span.center_green {
+    height: 35px;
+    background: none;
+    text-align: center;
+    padding-right: 0px;
+    padding-left: 0px;
+    float: left;
+    color:#ffffff;
+}
+#header .top_menu ul li a span.center_red {
+    height: 35px;
+    background: none;
+    text-align: center;
+    padding-right: 0px;
+    padding-left: 0px;
+    float: left;
+    color:#ffffff;
+}
+
+/*#header .top_menu ul li a span.right {*/
+/*width: 5px;*/
+/*float: left;*/
+/*height: 35px;*/
+/*}*/
+
+#header .top_menu ul li a span.left {
+    width: 5px;
+    float: left;
+    height: 35px;
+}
+
+#header .top_menu ul li a.active {
+    color: #000000;
+    display: block;
+}
+
+#header .top_menu ul li a.active span.center {
+
+    display: block;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/top_menu_center.jpg) repeat-x;*/
+    background-color: #ffffff;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 8px;
+}
+#header .top_menu ul li a.active span.center .bgLinkActive{
+    width: 140px;
+    height: 30px;
+    background-color: #ffffff;
+    vertical-align: middle;
+    margin-top: -38px;
+    padding: 0;
+}
+
+/*#header .top_menu ul li a.active span.right {*/
+/*width: 13px;*/
+/*float: left;*/
+/*height: 35px;*/
+/*/!*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/top_menu_right_hover.jpg) no-repeat;*!/*/
+/*}*/
+
+#header .top_menu ul li a.active span.left {
+    width: 13px;
+    float: left;
+    height: 35px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/top_menu_left_hover.jpg) no-repeat;*/
+}
+
+#header .top_menu ul li.sep {
+    display: none;
+    width: 3px;
+    height: 13px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/top_menu_sep.jpg) no-repeat;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+#header .lang {
+    float: left;
+    margin-left: 15px;
+    position: relative;
+    top: 65px;
+}
+
+#header .tool_bar {
+    font-size: 12px;
+    font-family: arial;
+    font-weight: normal;
+    color: #0084CC;
+    display: inline-block;
+    position: absolute;
+    top:45%;
+    left: 0;
+    /*padding-top: 10px;*/
+}
+
+#header .tool_bar ul{
+    margin: 0;
+    padding: 0;
+}
+#header .tool_bar ul li {
+    list-style: none;
+    float: left;
+    margin-right:9px;
+}
+#header .tool_bar ul li a{
+    font-family: arial;
+    font-weight: normal;
+    color: #0084CC;
+    text-decoration:none;
+    font-size: 11px;
+    outline-color: transparent;
+}
+
+#header .tool_bar ul li img {
+    vertical-align: middle;
+}
+
+#header .tool_bar .logoYad2Small {
+    margin-top: -2px;
+}
+
+#header .tool_bar .published .published_btn{
+    background-color: #53b50a;
+    border-radius: 4px;
+    width: 149px;
+    height: 36px;
+    margin-top:-9px;
+}
+#header .tool_bar .published .published_btn_txt{
+    color: #ffffff;
+    font-size: 20px;
+    font-family: FbSpoiler;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 7px;
+}
+
+#header .title {
+    position:absolute;
+    left:0px;
+    top:30px;
+    width:740px;
+}
+#header .title h1 {
+    color:#1f90d6;
+    font-size:22px;
+    margin:0px;
+    padding:0px;
+    font-family: arial;
+    font-weight: bold;
+    padding-bottom:5px;
+    /*border:1px solid black;*/
+}
+#header .title .underline_title {
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/underline_koteret.jpg) no-repeat;
+    width:700px;
+    height:4px;
+    /*border:1px solid black;*/
+}
+
+#menu {
+    margin: 0 auto;
+    clear: both;
+    width: 100%;
+    height: 38px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/menu.jpg) no-repeat;*/
+    background-color: #000000;
+}
+
+
+#menu ul {
+    padding: 0;
+    margin: 0 auto;
+    width: 980px;
+}
+
+#menu ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#menu ul li.sep {
+    color: #ffffff;
+    margin: 0 !important;
+    vertical-align: top;
+    margin-top: 13px!important;
+    display: inline-block;
+}
+
+#menu ul li a {
+    font-size: 17px;
+    font-family: 'FbSpoiler';
+    font-weight: normal;
+    color: #ffffff;
+    text-decoration: none;
+    width: auto;
+    height: 31px;
+    background: none;
+    line-height: 250%;
+}
+
+#menu ul li a span {
+    cursor: pointer;
+}
+
+#menu ul li a span.center {
+    width: auto;
+    float: left;
+    height: 31px;
+    background: none;
+    text-align: center;
+    padding-right: 7px;
+    padding-left: 7px;
+}
+
+#menu ul li a span.right {
+    display: none;
+    width: 11px;
+    float: left;
+    height: 31px;
+}
+
+#menu ul li a span.left {
+    display: none;
+    width: 11px;
+    float: left;
+    height: 31px;
+}
+
+#menu ul li a.active {
+    color: #425E74;
+}
+
+#menu ul li a.active span.center {
+    width: auto;
+    float: left;
+    height: 23px;
+    line-height: 23px;
+    margin-top: 5px;
+    background: #fff;
+}
+
+#menu ul li a.active span.right {
+    width: 11px;
+    float: left;
+    height: 31px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/menu_hover_right.jpg) no-repeat;
+}
+
+#menu ul li a.active span.left {
+    width: 11px;
+    float: left;
+    height: 31px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/menu_hover_left.jpg) no-repeat;
+}
+
+#menu .property_type {
+    width: 131px;
+    height: 23px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/select.jpg);
+    float: left;
+    margin-left: 10px;
+    margin-top: 7px;
+
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    font-style: italic;
+    font-family: arial;
+    color: #405F77;
+    text-indent: 10px;
+    line-height: 180%;
+}
+
+#search_bar {
+    margin: 0 auto 0 auto;
+    clear: both;
+    width: 100%;
+    height: 237px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/bg_search_new1.jpg) no-repeat 100%;
+
+}
+
+
+#search_bar ul {
+    margin: 0 auto;
+    width: 980px;
+    padding: 0px;
+}
+
+#search_bar ul h1 {
+    margin: 0 auto;
+    width: 980px;
+
+    color: #ffffff;
+    font-family: 'FbSpoiler';
+    font-size: 54px;
+    font-weight: 400;
+    text-align: center;
+    padding: 45px 0 0 0;
+
+}
+#search_bar ul form {
+    margin: 0 auto;
+    width: 980px;
+    padding: 0;
+}
+#search_bar ul form ul {
+    margin: 0 auto;
+    width: 980px;
+    padding: 0;
+}
+
+#search_bar ul li {
+    list-style: none;
+    float: right;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+#search_bar ul li input.search_submit {
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    width: 84px;
+    height: 39px;
+    background-color: #ff6c0c;
+    color: #ffffff;
+    cursor:pointer;
+    position: relative;
+    font-size: 2em;
+    font-family: 'FbSpoiler';
+}
+#search_bar ul li .search_submit_txt {
+    position: absolute;
+    right: 962px;
+    top: 293px;
+    font-family: 'FbSpoiler';
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 400;
+
+}
+
+input#btn_submit {
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    width: 170px;
+    height: 40px;
+    background-color: #ff6c0c;
+    color: #ffffff;
+    cursor:pointer;
+    position: relative;
+    font-size: 2em;
+    font-family: 'FbSpoiler';
+}
+
+
+#search_bar ul li.sep {
+    margin-right: 130px;
+}
+#search_bar ul li.sep2 {
+    border-left: 1px solid #FFFFFF;
+    height: 30px;
+    margin-top: 23px;
+}
+#search_bar ul li.left {
+    margin-right: 0px;
+    margin-top: 0px;
+}
+#search_bar ul li.left2 {
+    margin-right: 20px;
+    margin-top: 0px;
+}
+
+.select_combo {
+    width: 205px;
+    height: 38px;
+    /* background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/select_combo.png); */
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+    /* font-style: italic; */
+    font-family: 'FbSpoiler';
+    color: #000000;
+    text-indent: 20px;
+    line-height: 194%;
+}
+
+.select_combo_small {
+    width: 190px;
+    height: 38px;
+    /* background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/select_combo.png); */
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+    /* font-style: italic; */
+    font-family: 'FbSpoiler';
+    color: #000000;
+    text-indent: 20px;
+    line-height: 194%;
+}
+
+/*.select_combo_contact {*/
+/*width: 229px;*/
+/*height: 33px;*/
+/*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/combo_contact.png);*/
+/*cursor: pointer;*/
+/*/!*font-weight: bold;*!/*/
+/*font-size: 12px;*/
+/*/!*font-style: italic;*!/*/
+/*font-family: arial;*/
+/*color: #484848;*/
+/*text-indent: 20px;*/
+/*line-height: 250%;*/
+/*margin-right:2px;*/
+/*/!*margin-right:12px;*!/*/
+/*text-align: right;*/
+/*}*/
+
+.select_combo_contact1 {
+    width: 338px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+
+}
+div.select_combo_contact1:after {
+    content: '\25BC';
+    font-size: 1.1em;
+    float: left;
+    margin-left: 8px;
+    height: 38px;
+    line-height: 43px;
+}
+
+
+.select_open_contact {
+    margin-top: 0px;
+
+    margin-left: auto;
+    /*width: 220px;*/
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    /*max-height: 200px !important;*/
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: absolute;
+    background: #fafafa;
+    z-index: 9999;
+    /*	text-align: right;*/
+    direction: rtl;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    /*float: right;*/
+}
+/*#mailto.mailto1{*/
+/*border: none;*/
+
+/*background: url(http://images.yad2.co.il/Pic/yad2mobile/flat/arrowdown.png) no-repeat 14px 17px;*/
+/*background-size: 13px;*/
+/*}*/
+
+.input_contact {
+    width: 338px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    /*text-indent: 9px;*/
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+}
+
+/*.input_contact input {*/
+/*border: 0px;*/
+/*background: none;*/
+/*margin-top: 5px;*/
+/*font-size: 12px;*/
+/*font-weight: normal;*/
+/*font-family: arial;*/
+/*color: #484848;*/
+/*margin-right: 20px;*/
+/*width: 208px;*/
+/*}*/
+.input_contact input {
+    border: 0px;
+    background: none;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+    width: 338px;
+    height: 38px;
+}
+
+.contact_code {
+    width: 338px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    /* text-indent: 9px; */
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+
+}
+
+.contact_code input {
+    border: 0px;
+    background: none;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+    width: 240px;
+    height: 38px;
+}
+
+.input_contact_big {
+    width: 338px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    /* text-indent: 9px; */
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+}
+
+.input_contact_big input {
+    border: 0px;
+    background: none;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+    width: 338px;
+    height: 38px;
+}
+
+.textarea_contact {
+    width: 338px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    /* text-indent: 9px; */
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.textarea_contact textarea {
+    border: 0px;
+    background: none;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+    width: 332px;
+    height: 33px;
+    line-height: 32px;
+    resize: none;
+}
+.input_contact.input_contact_NewProjectName{
+    margin-left: 31px;
+}
+.line1 {
+    display: inline-block;
+}
+
+.line2 {
+    display: inline-block;
+}
+
+.select_open_property {
+    margin-top: 30px;
+    margin-right: 837px;
+    margin-left: auto;
+    float: left;
+    width: 131px;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    max-height: 200px !important;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: absolute;
+    background: #fff;
+    z-index: 9999;
+}
+
+.select_open {
+    margin-top: 0px;
+    margin-left: auto;
+    width: 203px;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    max-height: 180px !important;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: #fff;
+    z-index: 9999;
+    text-align: right;
+    direction: rtl;
+    float: right;
+}
+
+.select_open_small {
+    margin-top: 0px;
+
+    margin-left: auto;
+    width: 188px;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    max-height: 180px !important;
+    /*overflow-y: hidden;*/
+    /*overflow-x: hidden;*/
+    position: absolute;
+    background: #fff;
+    z-index: 9999;
+    text-align: right;
+    direction: rtl;
+    float: right;
+}
+
+/*div.select_combo:after {*/
+/*content: '\25BC';*/
+/*font-size: 0.7em;*/
+/*vertical-align: middle;*/
+/*float: left;*/
+/*margin-left: 8px;*/
+/*margin-top: 1px;*/
+/*}*/
+
+/*div.select_combo_small:after {*/
+/*content: '\25BC';*/
+/*font-size: 0.7em;*/
+/*vertical-align: middle;*/
+/*float: left;*/
+/*margin-left: 8px;*/
+/*margin-top: 1px;*/
+/*}*/
+
+#search_bar .material-icons1{
+    font-size: 24px;
+    vertical-align: middle;
+    float: left;
+    margin-left: 4px;
+    margin-top: 8px;
+    color: #7e7e7e;
+    cursor: pointer;
+}
+
+
+.select_open a {
+    display: block;
+    width: 206px;
+    height: 18px;
+    padding: 2px;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: arial;
+    color: #000;
+    text-decoration: none;
+}
+.select_open a:hover {
+    background: #E4F2F4;
+}
+
+.mediaCnt {
+    width: 100%;
+    background-color: #f2f2f2;
+    margin: 0 auto;
+    height: 282px;
+}
+
+.mediaCnt .mediaWrap{
+    width: 980px;
+    margin: 0 auto;
+    padding: 46px;
+}
+
+#gallery_video {
+    margin-top: 0;
+    display: inline-block;
+    width: 45%;
+    margin-left: 10%;
+}
+
+#gallery_video .gallery_video_title{
+    width: 99%;
+    margin: 0 10px 30px auto;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+}
+#gallery_video .gallery_video_title .gallery_video_title_icon{
+    background: url('http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/video_icon.png') no-repeat;
+    width: 28px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: top;
+}
+#gallery_video .gallery_video_title .gallery_video_title_txt{
+    font-family: FbSpoiler;
+    font-size: 19px;
+    color: #000000;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
+
+
+#gallery_panorami {
+    margin-top: 0;
+    display: inline-block;
+    width: 45%;
+}
+#gallery_panorami .gallery_panorami_title{
+    width: 99%;
+    margin: 0 10px 30px auto;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+}
+#gallery_panorami .gallery_panorami_title .gallery_panorami_title_icon{
+    background: url('http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/panorami_icon.png') no-repeat;
+    width: 26px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+#gallery_panorami .gallery_panorami_title .gallery_panorami_title_txt{
+    font-family: FbSpoiler;
+    font-size: 19px;
+    color: #000000;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.jcarousel-next.jcarousel-next-horizontal {
+    /*background: transparent !important;*/
+    right: -14px !important;
+}
+
+.jcarousel-container.jcarousel-container-horizontal {
+    padding: 0 !important;
+    margin-top: 0 !important;
+}
+.jcarousel-next.jcarousel-next-horizontal .material-icons{
+    color: #d8d8d8 !important;
+    font-weight: 100 !important;
+    font-size: 33px;
+}
+
+.jcarousel-prev.jcarousel-prev-horizontal {
+    /*background: transparent !important;*/
+    left: -22px !important;
+}
+.jcarousel-prev.jcarousel-prev-horizontal .material-icons{
+    color: #565656 !important;
+    font-weight: 100 !important;
+    font-size: 33px;
+}
+
+.jcarousel-clip.jcarousel-clip-horizontal {
+    width: 100% !important;
+    height: auto !important;
+}
+li.jcarousel-item a{
+    display: block;
+}
+li.jcarousel-item a img {
+    width: 100% !important;
+    height: 95px;
+    display: block;
+}
+#gallery_rmoney {
+    margin-top: 0px;
+    float: left;
+    width: 480px;
+    height: 179px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/panorami_gallery.jpg) no-repeat;
+    visibility:hidden;
+}
+/*////////////////////////////////////////////////*/
+#gallery_video_new {
+    margin-top: 0px;
+    float: right;
+    width: 368px;
+    height: 183px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/video_gallery_new1.jpg) no-repeat;
+    visibility:hidden;
+}
+
+#gallery_panorami_new {
+    margin-top: 0px;
+    margin-right: 2px;
+    float: right;
+    width: 366px;
+    height: 183px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/panorami_gallery_new_2.jpg) no-repeat;
+    visibility:hidden;
+}
+
+#gallery_rmoney_new {
+    margin-top: 0px;
+    margin-right: 2px;
+    float: right;
+    width: 238px;
+    height: 183px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/rmoney_gallery_new.jpg) no-repeat;
+    visibility:hidden;
+}
+
+/*////////////////////////////////////////////////*/
+
+#mainFrame {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    margin-top: 15px;
+}
+#mainFrame.mainFrame_persum {
+    width: 100%;
+    margin: 15px auto auto auto;
+}
+div#mainFrame.mainFrame_persum .left_column_new,
+div#mainFrame.site_map .left_column_new,
+div#mainFrame.contact_us .left_column_new{
+    display: none;
+}
+/*#mainFrame.mainFrame_advertising {*/
+/*width: 980px;*/
+/*margin: 0 auto;*/
+/*}*/
+
+#mainFrame .titleProjectWrap {
+    width: 980px;
+    margin: 0 auto 23px auto;
+    border-bottom: 2px solid;
+    padding-bottom: 7px;
+    color: #000000;
+}
+#mainFrame .titleProjectWrap_condition{
+    margin-top: 30px!important;
+}
+#mainFrame .titleCityWrap {
+    width: 980px;
+    margin: 28px auto;
+    border-bottom: 1px solid #c7c7c7;
+    padding-bottom: 20px;
+    color: #000000;
+    font-family: FbSpoiler;
+    font-size: 16px;
+    font-weight: 400;
+}
+#mainFrame .titleCityWrap span {
+    color: #047abc;
+    font-family: FbSpoiler;
+    font-size: 16px;
+    font-weight: bold;
+}
+#mainFrame .titleProjectWrap1 {
+    margin-top: 42px;
+    width: 760px!important;
+}
+
+#mainFrame .contentWrap {
+    width: 980px;
+    margin: 0 auto 20px auto;
+}
+
+#mainFrame .titleProjectWrap .fa-diamond{
+    font-size: 1.8em;
+    color: #000000;
+    vertical-align: sub;
+}
+
+#mainFrame .titleProjectWrap .fa-envelope-o{
+    font-size: 1.8em;
+    color: #000000;
+    vertical-align: sub;
+}
+
+#mainFrame .titleProjectWrap .titleProjectWrap_text{
+    font-family: FbSpoiler;
+    font-size: 19px;
+    color: #000000;
+    font-weight: bold;
+    display: inline-block;
+}
+#mainFrame .titleProjectWrap .titleProjectWrap_text1{
+    margin-right: 3px;
+}
+
+/*#mainFrame .titleProjectWrap hr{*/
+/*height:2px;*/
+/*border-width:0;*/
+/*color:#333333;*/
+/*background-color:#333333;*/
+/*}*/
+
+#mainFrame_thanks .thanks_wrap {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#mainFrame_thanks {
+    width: 100%;
+    clear: both;
+    margin: 10px auto auto auto;
+    padding: 0;
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object1{
+    width: 100%;
+    margin: 0 auto 30px 0;
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object2{
+    width: 100%;
+    margin: 0 auto 30px 0;
+    background-color: #f2f2f2;
+    padding-bottom: 43px;
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object2 .mainFrame_thanks_wrap_object2_title{
+    width: 666px;
+    margin: 0 auto;
+    /*border-bottom: 2px solid;*/
+    padding: 44px 0 6px 0;
+    font-family: FbSpoiler;
+    font-size: 32px;
+    color: #000000;
+    font-weight: normal;
+
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object2 .mainFrame_thanks_wrap_object2_title1{
+    color: #047abc;
+    font-family: 'FbSpoiler';
+    font-size: 16px;
+    font-weight: 600;
+    width: 980px;
+    margin: 0 auto;
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object2 .thanks_wrap_1 {
+    width: 980px;
+    margin: 0 auto;
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object2 .mainFrame_thanks_wrap_object2_title span{
+    font-family: FbSpoiler;
+    font-size: 32px;
+    color: #047abc;
+    font-weight: normal;
+    display: inline-block;
+    /*margin-right: 5px;*/
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object1 .title_thanks{
+    margin: 0px auto;
+    width: 980px;
+    color: #000000;
+    font-family: 'FbSpoiler';
+    font-size: 38px;
+    font-weight: 400;
+    text-align: center;
+    padding: 15px 0 17px 0;
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object1 .data_client_thanks{
+    margin: 0 auto;
+    width: 27%;
+}
+
+#mainFrame_thanks .mainFrame_thanks_wrap_object1 .data_client_thanks .data_client_thanks_1{
+    margin: 0 0 8px 0;
+    padding: 0;
+    color: #000000;
+    font-family: 'FbSpoiler';
+    font-size: 25px;
+    font-weight: 400;
+}
+#mainFrame_thanks .mainFrame_thanks_wrap_object1 .data_client_thanks .data_client_thanks_2{
+    margin: 0 0 8px 0;
+    padding: 0;
+    color: #000000;
+    font-family: 'FbSpoiler';
+    font-size: 25px;
+    font-weight: 400;
+}
+#mainFrame_thanks .mainFrame_thanks_wrap_object1 .data_client_thanks .data_client_thanks_3{
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    font-family: 'FbSpoiler';
+    font-size: 25px;
+    font-weight: 400;
+}
+#mainFrame_thanks .mainFrame_thanks_wrap_object1 .data_client_thanks .data_client_thanks_3 span {
+    display: inline-block;
+}
+#mainFrame_thanks .mainFrame_thanks_wrap_object1 .data_client_thanks .data_client_thanks_3 span a{
+    color: #ff6600;
+    cursor: pointer;
+}
+
+#mainFrame .right_column {
+    float: right;
+    width: 780px;
+}
+
+
+
+.company_bg {
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/company_bg.jpg) no-repeat;	*/
+    width:100%!important;
+    height:auto;
+    margin: 0 auto;
+}
+.holiday_sales_bg {
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/holiday_sales_bg.jpg) no-repeat;
+    width:778px;
+    height:auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.internal_page_frame{
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/term_bg.jpg) top no-repeat;*/
+    /*min-height:711px;*/
+    width: 100%!important;
+    margin: 0 auto;
+}
+#mainFrame .internal_page_frame table{
+    width: 980px;
+    cellpadding:0;
+    cellspacing:0;
+    border:0;
+    direction: rtl;
+    margin: 0 auto 40px auto;
+    padding: 0;
+}
+.mainFrame_persum .internal_page_frame .persum_text{
+    width: 760px;
+    margin: 0 auto;
+}
+
+.mainFrame_persum .internal_page_frame .persum_text .persum_text_v1{
+    color: #047abc;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    margin: 5px 0 18px 0;
+    padding: 0;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+.mainFrame_persum .internal_page_frame .persum_text .persum_text_v2{
+    color: #000000;
+    font-size: 16px;
+    font-family: 'FbSpoiler';
+    margin: 5px 0 18px 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+.mainFrame_persum .internal_page_frame .persum_form{
+    width: 100%;
+    margin: 33px auto 30px 0;
+    height: 415px;
+    background-color: #f2f2f2;
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form{
+    width: 760px;
+    margin: 0 auto;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .btn_persum_form{
+    float: left;
+    margin-top: 12px;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .btn_persum_form .search_submit{
+    border-radius: 4px;
+    width: 340px;
+    height: 42px;
+    background-color: #ff6c0c;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    font-size: 27px;
+    font-family: 'FbSpoiler';
+    font-weight: 500;
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1{
+    width: 760px;
+    margin: 0 auto;
+    padding: 25px 0 0 0;
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_lineA{
+    padding-top: 44px!important;
+}
+
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .star_field{
+    display: inline-block;
+    font-size: 8px;
+    color: #ff6600;
+    margin-left: 5px;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .field_persum{
+    display: inline-block;
+    margin-left: 31px;
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .input_contact{
+    display: inline-block;
+
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .input_contact_phone{
+    display: inline-block;
+    margin-left: 31px;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .input_contact_email{
+    display: inline-block;
+
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_subject_wrap{
+    float: right;
+    margin-left: 13px;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_message_wrap{
+    float: left;
+
+}
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_message_wrap .star_field{
+    display: inline-block;
+    margin-top: 17px;
+    vertical-align: top;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_message_wrap .textarea_contact{
+    display: inline-block;
+}
+
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_subject_wrap .line1 .star_field{
+    display: inline-block;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_subject_wrap .line1 .input_contact_big_subject{
+    display: inline-block!important;
+    margin-left: 31px!important;
+    margin-bottom: 25px;
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_subject_wrap .line2 .star_field{
+    display: inline-block;
+}
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_subject_wrap .line2 .contact_code_subject{
+    display: inline-block!important;
+    margin-left: 5px!important;
+    width: 240px;
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .persum_message_wrap{
+    display: inline-block;
+
+}
+
+.mainFrame_persum .internal_page_frame .persum_form form .persum_form_line1 .star_field2{
+    display: inline-block;
+    margin: 0 13px 0 5px;
+    font-size: 8px;
+    color: #ff6600;
+}
+
+#mainFrame .internal_page_frame b{
+    font-size:14px;
+    color: #047abc;
+}
+
+/*#mainFrame .internal_page_frame a{
+	color:#000;
+}*/
+
+#mainFrame .left_column {
+    float: right;
+    width: 181px;
+    margin-right: 18px;
+}
+
+#mainFrame .left_column_new {
+
+    float: right;
+    width: 181px;
+    margin-right: 18px;
+    /*margin-top: 15px;*/
+}
+
+
+
+
+
+
+
+#mainFrame .left_column_new #buttons_block_body{
+    display: none;
+}
+
+#video_carousel .gallery_shadow, #panorami_carousel .gallery_shadow {
+    width: 102px;
+    height: 6px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/gallery_shadow.jpg) no-repeat;*/
+    margin-top: -2px;
+}
+
+#video_carousel a.project, #panorami_carousel a.project{
+    width: 100% !important;
+    font-family: 'FbSpoiler' !important;
+    font-size: 18px !important;
+    color: #000000 !important;
+    font-weight: normal !important;
+}
+
+#video_carousel a.project, #panorami_carousel a.project, #rmoney_carousel a.project {
+    text-decoration: none;
+    color: #025077;
+    font-size: 12px;
+    font-family: arial;
+    text-align: center;
+    display: block;
+    width: 102px;
+}
+
+#video_carousel a:hover.project, #panorami_carousel a:hover.project {
+    text-decoration: underline;
+}
+/*//////////////////////////////////////////*/
+#video_carousel .gallery_shadow, #panorami_carousel .gallery_shadow {
+    width: 102px;
+    height: 6px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/gallery_shadow.jpg) no-repeat;*/
+    margin-top: -2px;
+}
+
+#video_carousel a.project, #panorami_carousel a.project {
+    text-decoration: none;
+    color: #025077;
+    font-size: 12px;
+    font-family: arial;
+    text-align: center;
+    display: block;
+    width: 102px;
+}
+
+#video_carousel a:hover.project, #panorami_carousel a:hover.project {
+    text-decoration: underline;
+}
+/*//////////////////////////////////////////*/
+
+
+.paging {
+    /*display: none;*/
+    margin-top:15px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/paging_bg.jpg) no-repeat;*/
+    clear: both;
+    width: 779px;
+    height: 79px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.yad2_seo .left{
+    padding-top:8px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/yad2_sale.jpg) no-repeat;
+    width: 382px;
+    height: 91px;
+}
+.yad2_seo .left a.title{
+    color:#0082C8;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration: none;
+}
+.yad2_seo .left .subtitle{
+    padding-right:250px;
+    color:#6f7277;
+    font-size:14px;
+    padding-top:3px;
+}
+.yad2_seo .right .subtitle{
+    padding-right:250px;
+    color:#6f7277;
+    font-size:14px;
+    padding-top:3px;
+}
+.yad2_seo .right .subtitle a.subtitle_link{
+    color:#6f7277;
+    cursor:pointer;
+    text-decoration: underline;
+}
+.yad2_seo .left .subtitle a.subtitle_link{
+    color:#6f7277;
+    cursor:pointer;
+    text-decoration: underline;
+}
+.yad2_seo .right a.title{
+    color:#0082C8;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration: none;
+}
+.yad2_seo .right{
+    padding-top:8px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/yad2_rent.jpg) no-repeat;
+    width: 382px;
+    height: 91px;
+}
+
+.yad2_seo {
+    margin-top:15px;
+    clear: both;
+    width: 779px;
+    height: 91px;
+}
+/*********seo new********************************************************************/
+.yad2_seo_left2 .left{
+    display: none;
+    padding-top:5px;
+    margin-top:10px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/kidum_rent.jpg) no-repeat;
+    width: 183px;
+    height: 45px;
+}
+.yad2_seo_left2 .left a.title{
+    color:#ef7a15;
+    font-size:14px;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration: none;
+}
+.yad2_seo_left2 .left .subtitle{
+    padding-right:60px;
+    /*color:#6f7277;*/
+    font-size:14px;
+    padding-top:3px;
+    font-weight:bold;
+}
+.yad2_seo_left2 .right .subtitle{
+
+    padding-right:60px;
+    /*color:#6f7277;*/
+    font-size:14px;
+    padding-top:3px;
+    font-weight:bold;
+}
+.yad2_seo_left2 .right .subtitle a.subtitle_link{
+    color:#6f7277;
+    cursor:pointer;
+    text-decoration: underline;
+}
+.yad2_seo_left2 .left .subtitle a.subtitle_link{
+    color:#6f7277;
+    cursor:pointer;
+    text-decoration: underline;
+}
+.yad2_seo_left2 .right a.title{
+    color:#ef7a15;
+    font-size:14px;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration: none;
+}
+.yad2_seo_left2 .right{
+    display: none;
+    padding-top:5px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/kidum_sale.jpg) no-repeat;
+    width: 183px;
+    height: 45px;
+}
+
+.yad2_seo_left2 {
+    margin-top:15px;
+    clear: both;
+    width: 183px;
+    height: 60px;
+}
+/*****************************************************************************/
+.paging ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.paging ul li {
+    list-style: none;
+    display: inline-block;
+    margin-top: 25px;
+    margin-left: 10px;
+    height:37px;
+}
+
+.paging ul li a.active{
+    clear: both;
+    width: 37px;
+    height: 37px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/circle.jpg) no-repeat;
+    display: inline-block;
+    line-height:200%;
+    position: relative;
+    top: 0px;
+    font-size: 18px;
+}
+.paging ul li a {
+    clear: both;
+    width: 26px;
+    height: 26px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/circle_small.jpg) no-repeat;
+    display: inline-block;
+    line-height:200%;
+    margin-top: 0px;
+    font-weight: bold;
+    position: relative;
+    top: -2px;
+    font-family: arial;
+    color: #fff;
+    text-decoration: none;
+}
+
+.blue_arrow_fix {
+    display: none;
+    position: relative;
+    top: 7px;
+}
+
+.blue_arrow_fix2 {
+    display: none;
+    position: relative;
+    top: 6px;
+}
+
+.paging .hez {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 0px;
+}
+
+
+.more_projects{
+    color: #0083CB;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration:none;
+    margin-top: 20px;
+    /*background-color:#dbdbdb;
+    height:30px;
+    padding-top: 5px;
+    padding-right: 10px;*/
+}
+
+.text_block {
+    margin-right: auto;
+    margin-left: auto;
+    width: 778px;
+    height: auto;
+}
+.text_block_new {
+    width: 980px;
+    height: auto;
+    margin: auto auto 10px auto;
+}
+
+.text_block_top {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    width: 778px;
+    height: 7px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/med_block_top_980.jpg) no-repeat;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/med_block_top.jpg) no-repeat;	*/
+}
+.text_block_top_new {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    width: 980px;
+    height: 7px;
+
+    background-size: 980px 7px;
+
+}
+
+
+.text_block_body {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    width: 766px;
+    border-right: 1px solid #D4D4D4;
+    border-left: 1px solid #D4D4D4;
+    height: auto;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: arial;
+    padding-right: 10px;
+    line-height: 150%;
+    /*border:1px solid black;*/
+}
+
+.text_block_body_new {
+    margin: 0 auto;
+    clear: both;
+    width: 968px;
+    /*border-right: 1px solid #D4D4D4;*/
+    /*border-left: 1px solid #D4D4D4;*/
+    height: auto;
+    font-size: 12px;
+    font-family: arial;
+    color: #000000;
+    /*padding-right: 10px;*/
+    line-height: 140%;
+    /*border:1px solid black;*/
+}
+
+.text_block_body .title h2{
+    margin:0px;
+    padding:0px;
+    color: #0084CE;
+    font-size: 14px;
+    font-family: arial;
+    font-weight: bold;
+}
+.text_block_body_new .title h2{
+    margin:0px;
+    padding:0px;
+    color: #047abc;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.text_block_bottom {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    width: 778px;
+    height: 7px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/med_block_bottom.jpg) no-repeat;
+
+}
+.text_block_bottom_new {
+    width: 980px;
+    margin: 0 auto 25px 0;
+    border-bottom: 1px solid #c7c7c7;
+    padding-bottom: 18px;
+    color: #000000;
+}
+
+.company_block {
+    /*margin-left: 10px;*/
+    margin: 0 auto 41px auto;
+    clear: both;
+    width: 980px;
+
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/company_bg.jpg) no-repeat;	*/
+
+}
+.company_block_holiday {
+    margin-left: 10px;
+    clear: both;
+    width: 778px;
+    height: 285px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/company_bg.jpg) no-repeat;	*/
+
+}
+.company_content{
+    /*padding-left: 15px;*/
+    /*padding-right: 25px;*/
+    /*padding-top: 5px;*/
+}
+.company_block_logo{
+    /*padding-top: 5px;*/
+}
+
+.company_block_text{
+    padding-top: 5px;
+    font-size: 13px;
+    font-family: arial;
+}
+
+
+.project_block {
+    float: right;
+    /*margin-top: 15px;*/
+    width: 182px;
+    height: 220px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/project_block.png) no-repeat; */
+}
+
+
+.project_block .image a img {
+    width: 182px;
+    height: 124px;
+}
+
+.project_city_block {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+
+.project_block_sep {
+    width: 18px;
+    height: 1px;
+    float: right;
+}
+.project_block_sep_thanks {
+    width: 19px;
+    height: 1px;
+    float: right;
+}
+.project_block_sep2 {
+    width: 16px;
+    height: 1px;
+    float: right;
+}
+.project_block_small_sep {
+    width: 10px;
+    height: 1px;
+    float: right;
+}
+
+.project_block .title {
+    font-size: 17px;
+    font-family: FbSpoiler;
+    color: #ffffff;
+    margin-top: 5px;
+    text-align: center;
+    background-color: #000000;
+    background: rgba(0,0,0,.8);
+    position: absolute;
+    width: 182px;
+}
+
+.project_block .title a {
+    font-size: 17px;
+    font-family: FbSpoiler;
+    color: #ffffff;
+    /* padding-right: 10px; */
+    /*margin-top: 10px;*/
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+}
+/*.project_block .title a.orange{*/
+/*color: #fd761c;*/
+/*}*/
+
+.project_block .image {
+    margin-top: 7px;
+    height: 125px;
+
+}
+
+.project_block .image_mivza {
+    position: absolute;
+    margin: 99px 119px 0 0;
+    width: 49px;
+    height: 25px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/mivza_new.png) no-repeat;
+}
+
+.project_block .details {
+    margin-top: 11px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #000000;
+    font-family: FbSpoiler;
+    margin-right: -10px;
+}
+
+.project_block .details ul {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 0px;
+    list-style-image: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/li_blue.jpg);
+    list-style-position: inside;
+}
+
+
+.project_block .links {
+    margin-top: 15px;
+    clear: both;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    cursor:pointer;
+}
+
+/*.updates_block {
+	margin-right: auto;
+	margin-left: auto;
+	width: 181px;
+	height: 259px;
+	background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/updates_block.jpg) no-repeat;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: arial;
+	color: #fff;
+}
+
+.updates_block_text {
+	margin-right: auto;
+	margin-left: auto;
+	width: 160px;
+	padding-top: 35px;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: arial;
+	color: #fff;
+	/*text-align: justify;* /
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.updates_block_thanks_text {
+	margin-right: auto;
+	margin-left: auto;
+	width: 160px;
+	padding-top: 35px;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: arial;
+	color: #fff;
+	/*text-align: justify;* /
+	margin-bottom: 10px;
+	margin-top: 10px;
+}*/
+
+.nadlan_news_block {
+    margin-top: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    /*margin-top: 10px;*/
+    width: 182px;
+    height: 373px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/sales_block.jpg) no-repeat;*/
+    background-color: #e6f3fa;
+}
+.nadlan_news_block .title_news{
+    width: 182px;
+    height: 28px;
+    line-height: 28px;
+    color: #ffffff;
+    font-family: FbSpoiler;
+    font-weight: 500;
+    font-size: 19px;
+    margin: 0 auto;
+    background-color: #047abc;
+    text-align: center;
+}
+
+.nadlan_news_block .news_wrap {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    top: 14px;
+    position: relative;
+    margin-right: 5px;
+    overflow: hidden;
+    width: auto;
+    height: 318px;
+
+}
+
+.nadlan_news_block .news_wrap a {
+    width: 153px;
+    height: auto;
+
+    display: block;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: arial;
+    color: #424242;
+    padding-bottom: 21px;
+    padding-top: 9px;
+    border-bottom: 1px solid #c4cfd5;
+}
+
+.nadlan_news_block .news_wrap a.alt {
+    width: 173px;
+    height: auto;
+    background: #f5f5f5;
+    display: block;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: arial;
+    color: #424242;
+    padding-bottom: 5px;
+}
+
+.nadlan_news_block .news_wrap a span.title {
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/li_orange.png) right top no-repeat;*/
+    font-size: 12px;
+    font-family: arial;
+    color: #047abc;
+    display: block;
+    font-weight: bold;
+    /*margin-right: 10px;*/
+    padding-right: 10px;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
+
+.nadlan_news_block .news_wrap a span.desc {
+    margin-top: 5px;
+    display: block;
+    font-size: 12px;
+    font-family: arial;
+    color: #000000;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+.buttons_block_top {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 0px;
+    width: 183px;
+    height: 7px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/buttons_block_top.jpg) no-repeat;*/
+}
+
+.buttons_block_body {
+    width: 980px;
+    text-align: center;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #f2f2f2;
+}
+
+.buttons_block_body a {
+    padding-bottom: 3px;
+    display: block;
+}
+
+.buttons_block_body a .sep{
+    width: 172px;
+    height: 0;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/button_sep.jpg) no-repeat;
+}
+
+.buttons_block_bottom {
+    margin-right: auto;
+    margin-left: auto;
+    width: 183px;
+    height: 93px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/buttons_block_bottom.jpg) no-repeat;
+}
+.buttons_block_bottom_new {
+    margin-right: auto;
+    margin-left: auto;
+    width: 183px;
+    height: 23px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/buttons_block_bottom.jpg) no-repeat;*/
+    background-size: 183px 15px;
+}
+
+.projects_frame{
+    /*margin-top: 5px;
+    margin-bottom: 5px;*/
+    margin-right: auto;
+    margin-left: auto;
+    width: 762px;
+    /*border:1px solid black;*/
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/projects_frame_bg.jpg) repeat-y;*/
+}
+.project_frame_company{
+    /*margin-top: 5px;
+    margin-bottom: 5px;*/
+    margin: 0 auto;
+    width: 980px!important;
+    /*border:1px solid black;*/
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/projects_frame_bg.jpg) repeat-y;*/
+}
+.projects_frame_thanks{
+    width: 980px;
+    /*border:1px solid black;*/
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/projects_frame_bg.jpg) repeat-y;*/
+}
+.projects_frame_ver2{
+    /*margin-bottom: 5px;*/
+    margin-right: auto;
+    margin-left: auto;
+    width: 762px;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/city_wrap_middle.jpg) repeat-y;
+    height:500px;*/
+
+    /*background: #eaeaea;*/
+    /*border:1px solid black;*/
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/projects_frame_bg.jpg) repeat-y;*/
+}
+
+.projects_city_frame_ver2{
+    margin: -7px auto;
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/city_wrap_top.jpg) no-repeat;	*/
+    /*background-color:#eaeaea;*/
+    width:778px;
+    display: inline-block;
+    /*height:auto;*/
+}
+
+.recommand {
+    margin: 0 auto;
+    padding-top:70px;
+    width: 683px;
+    height: 327px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/recomand_bg_new.png) no-repeat;
+}
+
+#results{
+    width: 589px;
+    margin: 0 auto;
+}
+#results .recommand_wrap{
+    width: 589px;
+    margin: 0 auto;
+}
+#results .title_recommand{
+    font-family: 'FbSpoiler';
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    height: 43px;
+}
+#results .recommand_wrap .recommand_tr1{
+    font-family: 'FbSpoiler';
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    height: 43px;
+}
+
+#results .recommand_wrap .recommand_tr2{
+    font-family: 'FbSpoiler';
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6600;
+}
+
+#results .recommand_wrap .recommand_tr3 .recommand_input{
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+    width: 265px;
+    height: 35px;
+    margin: 47px 0 3px 0;
+    display: inline-block;
+}
+
+#results .recommand_wrap .recommand_tr3 .star_field{
+    display: inline-block;
+    font-size: 8px;
+    color: #ff6600;
+    margin-left: 3px;
+}
+
+#results .recommand_wrap .recommand_tr4 .star_field{
+    display: inline-block;
+    font-size: 8px;
+    color: #ff6600;
+    margin-left: 3px;
+}
+
+#results .recommand_wrap .recommand_tr3 .recommand_input input{
+    border: 0px;
+    background: none;
+    width: 265px;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: arial;
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+
+}
+#results .recommand_wrap .recommand_tr4 .recommand_input{
+    margin: 13px 0 8px 0;
+    display: inline-block;
+}
+
+#results .recommand_wrap .recommand_tr4 .recommand_input input{
+    border: 0px;
+    background: none;
+    width: 265px;
+    height: 35px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: arial;
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+}
+
+#results .recommand_wrap .recommand_tr5{
+    margin-top: 7px;
+}
+
+#results .recommand_wrap .recommand_tr5 .recommand_tr5_txt{
+    font-family: arial;
+    font-size: 12px;
+    color: #ff6600;
+    float: right;
+}
+#results .recommand_wrap .recommand_tr5 .recommand_btn{
+    float: left;
+    margin-left: 9px;
+}
+#results .recommand_wrap .recommand_tr5 .recommand_btn1{
+
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    width: 270px;
+    height: 41px;
+    background-color: #ff6c0c;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    font-size: 2em;
+    font-family: 'FbSpoiler';
+}
+
+
+/*////////////////////////////////////////////////////*/
+#source{
+    width: 589px;
+    margin: 0 auto;
+}
+#source .recommand_wrap{
+    width: 589px;
+    margin: 0 auto;
+}
+#source .title_recommand{
+    font-family: 'FbSpoiler';
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    height: 43px;
+}
+#source .recommand_wrap .recommand_tr1{
+    font-family: 'FbSpoiler';
+    font-size: 30px;
+    font-weight: 400;
+    color: #000000;
+    height: 43px;
+}
+
+#source .recommand_wrap .recommand_tr2{
+    font-family: 'FbSpoiler';
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6600;
+}
+
+#source .recommand_wrap .recommand_tr3 .recommand_input{
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+    width: 265px;
+    height: 35px;
+    margin: 47px 0 3px 0;
+    display: inline-block;
+}
+
+#source .recommand_wrap .recommand_tr3 .star_field{
+    display: inline-block;
+    font-size: 8px;
+    color: #ff6600;
+    margin-left: 3px;
+}
+
+#source .recommand_wrap .recommand_tr4 .star_field{
+    display: inline-block;
+    font-size: 8px;
+    color: #ff6600;
+    margin-left: 3px;
+}
+
+#source .recommand_wrap .recommand_tr3 .recommand_input input{
+    border: 0px;
+    background: none;
+    width: 265px;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: arial;
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+
+}
+#source .recommand_wrap .recommand_tr4 .recommand_input{
+    margin: 13px 0 8px 0;
+    display: inline-block;
+}
+
+#source .recommand_wrap .recommand_tr4 .recommand_input input{
+    border: 0px;
+    background: none;
+    width: 265px;
+    height: 35px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: arial;
+    color: #484848;
+    text-indent: 9px;
+    text-align: right;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+}
+
+#source .recommand_wrap .recommand_tr5{
+    margin-top: 7px;
+}
+
+#source .recommand_wrap .recommand_tr5 .recommand_tr5_txt{
+    font-family: arial;
+    font-size: 12px;
+    color: #ff6600;
+    float: right;
+}
+#source .recommand_wrap .recommand_tr5 .recommand_btn{
+    float: left;
+    margin-left: 9px;
+}
+#source .recommand_wrap .recommand_tr5 .recommand_btn1{
+
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    width: 270px;
+    height: 41px;
+    background-color: #ff6c0c;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    font-size: 2em;
+    font-family: 'FbSpoiler';
+}
+
+/*////////////////////////////////////////////////////////*/
+
+/*.recommand_input {*/
+/*border: 0px;*/
+/*width: 207px;*/
+/*height: 29px;*/
+/*/!*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/recommand_input.jpg) right no-repeat;*!/*/
+/*/!*text-indent: 15px;*!/*/
+/*/!*padding-right: 15px;*/
+/*padding-top: 5px;*!/*/
+/*margin: 13px 0 8px 0;*/
+/*}*/
+
+/*.recommand_input input {
+	width: 273px;
+	height: 35px;
+	line-height: 38px;
+	cursor: pointer;
+	font-size: 16px;
+	font-family: 'FbSpoiler';
+	color: #484848;
+	 text-indent: 9px;
+	text-align: right;
+	background-color: #ffffff;
+	border: 1px solid #d6d6d6;
+}*/
+
+
+/*#kuchi {*/
+/*width: 980px;*/
+/*height: 20px;*/
+/*background: #808080;*/
+/*font-family: arial;*/
+/*font-size: 12px;*/
+/*color: #eaeaea;*/
+/*text-align: left;*/
+/*text-indent: 10px;*/
+/*margin-top: 1px;*/
+/*direction: ltr;*/
+/*line-height: 100%;	*/
+/*}*/
+
+/*#kuchi img {*/
+/*vertical-align: middle;	*/
+/*}*/
+
+#loading{
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/ajax-loader.gif) no-repeat;
+    position:absolute;
+    margin-top:100px;
+    margin-right:215px;
+    z-index:99999999;
+    width:32px;
+    height:32px;
+    visibility:hidden;
+}
+
+.rating{
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/rating_bg.jpg) no-repeat;*/
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 60px;
+
+}
+
+.rating .ratingWrap{
+    width: 980px;
+    margin: 0 auto;
+}
+
+.rating .ratingWrap .title {
+    width: 980px;
+    margin: 35px auto 0 auto;
+    border-bottom: 2px solid;
+    padding-bottom: 7px;
+}
+/*.rating .ratingWrap .title .fa-diamond {*/
+/*font-size: 1.8em;*/
+/*color: #000000;*/
+/*vertical-align: sub;*/
+/*}*/
+.rating .ratingWrap .title .ratingTitleTxt {
+    font-family: FbSpoiler;
+    font-size: 19px;
+    color: #000000;
+    font-weight: bold;
+    display: inline-block;
+}
+.rating .ratingWrap .title .rating_logo_yad2 {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 38px;
+    height: 20px;
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/logoYad2_new.jpg) no-repeat;
+}
+.rating .ratingWrap .title .ratingTitleIcon {
+    background: url('http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/madad_icon.png') no-repeat;
+    width: 32px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+
+
+/*.rating .title .rating_logo{*/
+/*margin-top: -5px;*/
+/*}*/
+/*.rating .title .rating_title{*/
+/*margin-bottom: 9px;*/
+/*}*/
+/*.rating .title .yad2_logo_small{*/
+/*margin-bottom: 4px;*/
+/*}*/
+/*.rating .title p, .rating .title h2{*/
+/*color: #ef7a15; */
+/*font-weight: bold; */
+/*font-size: 25px; */
+/*display: inline-block; */
+/*height: 45px; */
+/*vertical-align: middle;*/
+/*margin-top: 12px;*/
+/*margin-bottom: 26px;*/
+/*}*/
+
+.rating .top10{
+    margin: 0 auto;
+    width: 980px;
+}
+
+.rating .top10 div{
+    height: 460px;
+    display: inline-block;
+    margin: 30px 0 0 0;
+
+}
+.rating .top10 .txt_4{
+    margin: 13px 0 0 0;
+    padding: 0;
+    height: inherit;
+}
+
+.rating .top10 p{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #444343;
+    text-decoration: underline;
+
+}
+
+
+.rating .top10 div ol{
+    color: #000000;
+    /*list-style-type: none;*/
+    font-size: 18px;
+
+    list-style-position: inside;
+    font-family: 'FbSpoiler';
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+.rating .top10 div ol li{
+    margin: 0;
+    padding: 11px 10px;
+    border-bottom: 1px solid #cccccc;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.rating .top10 div ol li:before {
+    padding-left: 8px;
+
+}
+.rating h2{
+    color: #ffffff;
+    font-size: 21px;
+    margin: 10px;
+    text-align: center;
+}
+.rating h3{
+    color: #047abc;
+    font-size: 20px;
+    font-family: 'FbSpoiler';
+    margin: 0;
+    background-color: #cde4f2;
+    padding: 10px;
+}
+.rating h4{
+    color: #656464;
+    margin: 0 10px 2px;
+    padding-right: 9px;
+    font-size: 16px;
+}
+
+.rating .top10 div a{
+    color: #6c6a6a;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.rating .top10 div span{
+    color: #6c6a6a;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.rating .top10 div a:hover{
+    text-decoration: underline;
+}
+.rating  .cities{
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/city_rating.png?v=1) no-repeat;*/
+    /*background-color: #ececec;*/
+}
+.rating  .companies{
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/company_rating.png?v=1) no-repeat;*/
+    /*background-color: #ececec;*/
+}
+.rating  .projects{
+    /*background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/project_rating.png?v=1) no-repeat;*/
+    /*background-color: #ececec;*/
+}
+
+.yad2_seo_left .sale{
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/yad2_sale_left.jpg) no-repeat;
+    margin-top: 33px;
+}
+.yad2_seo_left .rent{
+    background: url(http://images.yad2.co.il/Pic/site_images/yad1/images/Yad1Images/yad2_rent_left.jpg) no-repeat;
+    margin-top: 13px;
+}
+.yad2_seo_left .sale, .yad2_seo_left .rent{
+    padding-top: 8px;
+    height: 208px;
+
+}
+.yad2_seo_left a.title{
+    color:#0082C9;
+    font-size:18px;
+    text-decoration: none;
+}
+.yad2_seo_left .subtitle{
+    color:#6f7277;
+    font-size:14px;
+}
+.yad2_seo_left p{
+    margin: 0;
+}
+.yad2_seo_left .subtitle_link{
+    position: relative;
+    top: 126px;
+}
+.yad2_seo_left {
+    /*margin-top:15px;*/
+    clear: both;
+    width: 183px;
+    text-align: center;
+    font-weight:bold;
+}
+
+#banner {
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    width: 970px;
+    height: 90px;
+    border:5px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 23px;
+    cursor:pointer;
+}
+
+.buttons_block_body_wrap {
+    width: 100%;
+    background: #f2f2f2;
+    margin-bottom: 50px;
+}
+
+
+.buttons_block_body_wrap .titleBtnWrap {
+    width: 980px;
+    margin: 0 auto 32px auto;
+    border-bottom: 2px solid;
+    padding: 29px 0 7px 0;
+}
+
+
+.buttons_block_body_wrap .titleBtnWrap .fa-diamond{
+    font-size: 1.8em;
+    color: #000000;
+    vertical-align: sub;
+}
+
+.buttons_block_body_wrap .titleBtnWrap span{
+    font-family: FbSpoiler;
+    font-size: 19px;
+    color: #000000;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+div#buttons_block_body a img {
+    margin-bottom: 10px;
+
+}
+
+div#buttons_block_body a {
+    width: 16%;
+    display: inline-block;
+    *display:inline;
+    zoom : 1;
+}
+
+.mediaWrap {
+    width: 980px;
+    margin: 0  auto 1em;
+}
+
+img[width='1'][height='1'] {
+    display: none;
+}
+
+.footer {
+    margin: 0 auto;
+    clear: both;
+    width: 100%;
+    font-family: arial;
+    color: #fff;
+    font-size: 12px;
+
+}
+
+.footer .text{
+    margin: 0 auto;
+    clear: both;
+    font-family: arial;
+    color: #fff;
+    font-size: 12px;
+    padding: 30px 0;
+    width: 980px;
+}
+
+/*.footer .text a{*/
+/*font-family: arial;*/
+/*color: #fff;*/
+/*font-size: 12px;*/
+
+/*}*/
+
+/*#kuchi a { color: #fff; }*/
+
+.all_rights{
+    padding-left: 10px;
+}
+
+.footerWrap{
+    width: 980px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.footerWrap .footerRight{
+    float: right;
+    width: 13%;
+    margin: 0 auto;
+    padding: 0;
+}
+.footerWrap .footerRight .logoYad1_footer{
+
+}
+.footerWrap .footerRight .logoYad1_footer a img{
+    width: 100px;
+    height: 57px;
+    margin-bottom: 12px;
+}
+.footerWrap .footerRight .published_btn_footer{
+    background-color: #53b50a;
+    border-radius: 4px;
+    width: 101px;
+    height: 30px;
+}
+.footerWrap .footerRight .published_btn_footer .published_btn_txt{
+    color: #ffffff;
+    font-size: 18px;
+    font-family: FbSpoiler;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 5px;
+}
+.footerWrap .footerRight a{
+    text-decoration: none;
+}
+
+.footerWrap .footerCenter{
+    float: right;
+    width: 73%;
+    margin: 0 auto;
+    padding: 0;
+}
+.footerWrap .footerCenter .all_rights_footer{
+    margin: 3px auto 31px auto;
+    font-family: arial;
+    font-size: 11px;
+    color: #595959;
+
+}
+.footerWrap .footerCenter .menu_footer ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    color: #c5c2c2;
+
+}
+.footerWrap .footerCenter .menu_footer ul li{
+    display: inline-block;
+    margin:0;
+    padding:3px;
+}
+.footerWrap .footerCenter .menu_footer ul li a{
+    color: #000000;
+    font-family: 'FbSpoiler';
+    text-decoration: none;
+    font-size: 16px;
+}
+.footerWrap .footerCenter .menu_footer ul li .sepFooter{
+    color: #c5c2c2 !important;
+    font-size: 12px !important;
+    font-family: arial;
+    padding: 10px;
+}
+.footerWrap .footerLeft{
+    display: inline-block;
+    width: 14%;
+    float: left;
+    margin: 0 auto;
+    padding: 0;
+}
+.footerWrap .footerLeft .customer_service_footer{
+    margin: 0;
+    padding: 0;
+}
+.footerWrap .footerLeft .customer_service_footer .customer_service_footer_txt{
+    text-align: left;
+    font-family: 'FbSpoiler';
+    color: #000000;
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.footerWrap .footerLeft .customer_service_footer .customer_service_footer_phone{
+    text-align: left;
+    font-family: arial;
+    color: #000000;
+    font-weight: 100;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.footerWrap .footerLeft .customer_service_footer .customer_service_footer_mail{
+    text-align: left;
+    font-family: arial;
+    color: #747474;
+    font-weight: 100;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.footerWrap .footerLeft .tool_bar_footer ul{
+    list-style-type: none;
+    text-align: left;
+}
+.footerWrap .footerLeft .tool_bar_footer ul li{
+    display: inline-block;
+}
+.footerWrap .clear {
+    clear: both;
+}
+
+
+
+#wrap.cityPage .projects_frame_ver2 .project_block.project_city_block {
+    display: inline-block;
+    float: none;
+    margin: 0;
+    padding-left: 15px;
+}
+
+
+#wrap.cityPage .projects_city_frame_ver2 .nadlan_news_block {
+    float: left;
+
+}
+#wrap.cityPage .contentWrap {
+    width: 100%;
+}
+
+#wrap.cityPage .contentWrap .right_column {
+    width: 980px;
+    margin: 0 auto;
+    float: none;
+}
+#wrap.cityPage .contentWrap .right_column .projects_city_frame_ver2{
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+#wrap.cityPage .contentWrap .right_column .projects_city_frame_ver2 .projects_frame_ver2{
+    width: 100%;
+    background-color: #ffffff!important;
+}
+#wrap.cityPage .contentWrap .right_column .projects_city_frame_ver2 .project_block_small_sep{
+    display: none;
+}
+
+.newProjects_cityPage_wrap {
+    width: 100%;
+    background-color: #f2f2f2;
+    padding-top: 40px;
+    margin-bottom: 30px;
+}
+
+.newProjects_cityPage {
+    width: 980px;
+    margin: 0 auto;
+}
+
+
+
+.newProjects_cityPage_wrap .newProjects_cityPage .project_block_sep {
+    display: none;
+}
+.newProjects_cityPage_wrap .newProjects_cityPage .project_block_sep2 {
+    display: none;
+}
+.newProjects_cityPage_wrap .newProjects_cityPage .moreProjects_block {
+    margin-left: 14px;
+}
+
+
+
+
+
+
+
+#wrap.cityPage .project_block_sep{
+    display: none;
+}
+#wrap.cityPage .project_block_sep2{
+    display: none;
+}
+
+#wrap.cityPage .project_block.moreProjects_block {
+    margin-left: 14px;
+}
+
+#wrap.cityPage .project_block.moreProjects_block:nth-of-type(5) {
+    margin-left: 0;
+}
+.recommand_results_wrap{
+    width: 589px;
+    margin: 38px auto;
+}
+.recommand_results_wrap .recommand_results_wrap_title{
+    font-family: 'FbSpoiler';
+    font-size: 40px;
+    /*font-weight: bold;*/
+    color: #ff6600;
+    margin-bottom: 22px;
+}
+.recommand_results_wrap .recommand_results_wrap_txt{
+    font-family: 'FbSpoiler';
+    font-size: 24px;
+    /*font-weight: bold;*/
+    color: #000000;
+    margin-bottom: 25px;
+}
+
+.recommand_results_wrap .recommand_results_wrap_btn{
+    margin: 89px 453px 0 0;
+}
+.recommand_results_wrap .recommand_results_wrap_btn .win_close{
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    width: 130px;
+    height: 41px;
+    background-color: #ff6c0c;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    font-size: 2em;
+    font-family: 'FbSpoiler';
+}
+
+.display-none {
+    display: none !important;
+}
+
+.contentWrap.contentWrap_all {
+    width: 100%!important;
+    margin: 0 auto!important;
+}
+
+.bg_projectBlock {
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    width: 100%;
+    padding-top: 38px;
+}
+
+
+
+#header .tool_bar .published .published_btn:focus,#header .tool_bar .published .published_btn:hover {
+    background: #98d36c;
+}
+
+#header .tool_bar li.tellTofriend:focus,#header .tool_bar li.tellTofriend:hover {
+    opacity: 0.4;
+    border: 0;
+    outline-color: transparent;
+}
+#header .tool_bar li.google:focus,#header .tool_bar li.google:hover {
+    opacity: 0.4;
+    border: 0;
+    outline-color: transparent;
+}
+#header .tool_bar li.twitter:focus,#header .tool_bar li.twitter:hover {
+    opacity: 0.4;
+    border: 0;
+    outline-color: transparent;
+}
+#header .tool_bar li.faceBook:focus,#header .tool_bar li.faceBook:hover {
+    opacity: 0.4;
+    border: 0;
+    outline-color: transparent;
+}
+#header .tool_bar li.logoYad2Small:focus,#header .tool_bar li.logoYad2Small:hover {
+    opacity: 0.4;
+    border: 0;
+    outline-color: transparent;
+}
+
+#search_bar ul li input.search_submit:focus,#search_bar ul li input.search_submit:hover{
+    background: #ffa76d;
+    outline-color: transparent;
+}

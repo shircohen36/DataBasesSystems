@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="css_for_check.css">
+<div class="select_open"  id="select1" style="display: none;">
+    <select size="7" id="area" name="AreaID"
+            style="text-align: right; direction: rtl; width: 203px;border: 0px;font-family: 'FbSpoiler';font-size: 14px"
+            onChange="ons('1','area', '1');LoadCities();">
+        <option
+                value='1'>אזור הצפון</option>
+        <option
+                value='2'>אזור השרון והסביבה</option>
+        <option
+                value='3'>אזור המרכז</option>
+        <option
+                value='4'>ירושלים והסביבה</option>
+        <option
+                value='8'>יהודה ושומרון</option>
+        <option
+                value='5'>אזור השפלה והסביבה</option>
+        <option
+                value='6'>אזור דרום</option>
+    </select>
+</div>
+</li>
+
+<li>
+    <i class="material-icons material-icons1" onclick="open_select(2,'city');">keyboard_arrow_down</i>
+    <div class="select_combo_small" id="select_combo2" onclick="open_select(2,'city');">בחר עיר</div>
+
+    <div class="select_open_small" style="display: none;" id="select2">
+        <select size="" id="city" name="CityID"
+                style="width: 189px; height:150px; border: 0px; font-family: 'FbSpoiler'; font-size: 14px;"
+                onChange="ons('2','city');"></select>
+    </div>
+</li>
+
+<li>
+    <i class="material-icons material-icons1" onclick="open_select(4,'neighborhood');">keyboard_arrow_down</i>
+    <div class="select_combo_small" id="select_combo4" onclick="open_select(4,'neighborhood');">בחר
+        שכונה
+    </div>
+
+    <div class="select_open_small" style="display: none;" id="select4">
+        <select id="neighborhood" name="neighborhood"
+                style="width: 187px; border: 0px;font-family: 'FbSpoiler';font-size: 14px;"
+                onChange="ons('4','neighborhood','1');"></select>
+    </div>
+</li>
+
+<script type="text/javascript">
+
+    var areaid = new Array();
+    var cityid = new Array();
+    var title = new Array();
+    areaid[0] ='1';
+    cityid[0] ='304';
+    title[0] ="אמנון";
+    areaid[1] ='1';
+    cityid[1] ='1';
+    title[1] ="חיפה";
+    areaid[2] ='1';
+    cityid[2] ='36';
+    title[2] ="טבריה";
+    areaid[3] ='1';
+    cityid[3] ='48';
+    title[3] ="טירת כרמל";
+    areaid[4] ='1';
+    cityid[4] ='71';
+    title[4] ="יוקנעם";
+    areaid[5] ='1';
+    cityid[5] ='39';
+    title[5] ="כרמיאל";
+    areaid[6] ='1';
+    cityid[6] ='41';
+    title[6] ="נהריה";
+    areaid[7] ='1';
+    cityid[7] ='226';
+    title[7] ="עכו";
+    areaid[8] ='1';
+    cityid[8] ='50';
+    title[8] ="עפולה";
+    areaid[9] ='1';
+    cityid[9] ='312';
+    title[9] ="קיבוץ דברת";
+    areaid[10] ='1';
+    cityid[10] ='206';
+    title[10] ="קרית אתא";
+    areaid[11] ='1';
+    cityid[11] ='25';
+    title[11] ="קרית ביאליק";
+    areaid[12] ='1';
+    cityid[12] ='37';
+    title[12] ="קרית ים";
+    areaid[13] ='1';
+    cityid[13] ='16';
+    title[13] ="קרית מוצקין";
+    areaid[14] ='1';
+    cityid[14] ='260';
+    title[14] ="שלומי";
+    areaid[15] ='2';
+    cityid[15] ='205';
+    title[15] ="אור עקיבא";
+    areaid[16] ='2';
+    cityid[16] ='270';
+    title[16] ="גליל ים";
+    areaid[17] ='2';
+    cityid[17] ='44';
+    title[17] ="הוד השרון";
+    areaid[18] ='2';
+    cityid[18] ='95';
+    title[18] ="הרצליה";
+    areaid[19] ='2';
+    cityid[19] ='46';
+    title[19] ="חדרה";
+    areaid[20] ='2';
+    cityid[20] ='248';
+    title[20] ="חריש";
+    areaid[21] ='2';
+    cityid[21] ='47';
+    title[21] ="כפר יונה";
+    areaid[22] ='2';
+    cityid[22] ='62';
+    title[22] ="כפר סבא";
+    areaid[23] ='2';
+    cityid[23] ='4';
+    title[23] ="נתניה";
+    areaid[24] ='2';
+    cityid[24] ='230';
+    title[24] ="סלעית";
+    areaid[25] ='2';
+    cityid[25] ='105';
+    title[25] ="פרדס חנה-כרכור";
+    areaid[26] ='2';
+    cityid[26] ='239';
+    title[26] ="פרדסיה";
+    areaid[27] ='2';
+    cityid[27] ='157';
+    title[27] ="צור יצחק";
+    areaid[28] ='2';
+    cityid[28] ='167';
+    title[28] ="רמת השרון";
+    areaid[29] ='2';
+    cityid[29] ='72';
+    title[29] ="רעננה";
+    areaid[30] ='2';
+    cityid[30] ='185';
+    title[30] ="תל מונד";
+    areaid[31] ='3';
+    cityid[31] ='99';
+    title[31] ="אזור";
+    areaid[32] ='3';
+    cityid[32] ='54';
+    title[32] ="בת ים";
+    areaid[33] ='3';
+    cityid[33] ='11';
+    title[33] ="גבעתיים";
+    areaid[34] ='3';
+    cityid[34] ='88';
+    title[34] ="גני תקווה";
+    areaid[35] ='3';
+    cityid[35] ='22';
+    title[35] ="חולון";
+    areaid[36] ='3';
+    cityid[36] ='9';
+    title[36] ="יהוד מונוסון";
+    areaid[37] ='3';
+    cityid[37] ='8';
+    title[37] ="פתח תקווה";
+    areaid[38] ='3';
+    cityid[38] ='12';
+    title[38] ="קריית אונו";
+    areaid[39] ='3';
+    cityid[39] ='132';
+    title[39] ="ראש העין";
+    areaid[40] ='3';
+    cityid[40] ='6';
+    title[40] ="ראשון לציון";
+    areaid[41] ='3';
+    cityid[41] ='28';
+    title[41] ="רמת גן";
+    areaid[42] ='3';
+    cityid[42] ='110';
+    title[42] ="שוהם";
+    areaid[43] ='3';
+    cityid[43] ='2';
+    title[43] ="תל אביב יפו";
+    areaid[44] ='4';
+    cityid[44] ='32';
+    title[44] ="ירושלים";
+    areaid[45] ='4';
+    cityid[45] ='7';
+    title[45] ="מודיעין";
+    areaid[46] ='4';
+    cityid[46] ='308';
+    title[46] ="מוצא עילית";
+    areaid[47] ='4';
+    cityid[47] ='61';
+    title[47] ="מעלה אדומים";
+    areaid[48] ='4';
+    cityid[48] ='114';
+    title[48] ="צור הדסה";
+    areaid[49] ='5';
+    cityid[49] ='19';
+    title[49] ="אשדוד";
+    areaid[50] ='5';
+    cityid[50] ='112';
+    title[50] ="אשקלון";
+    areaid[51] ='5';
+    cityid[51] ='117';
+    title[51] ="באר יעקב";
+    areaid[52] ='5';
+    cityid[52] ='113';
+    title[52] ="יבנה";
+    areaid[53] ='5';
+    cityid[53] ='199';
+    title[53] ="מזכרת בתיה";
+    areaid[54] ='5';
+    cityid[54] ='10';
+    title[54] ="נס ציונה";
+    areaid[55] ='5';
+    cityid[55] ='40';
+    title[55] ="רחובות";
+    areaid[56] ='6';
+    cityid[56] ='67';
+    title[56] ="אילת";
+    areaid[57] ='6';
+    cityid[57] ='276';
+    title[57] ="אשכולות";
+    areaid[58] ='6';
+    cityid[58] ='30';
+    title[58] ="באר שבע";
+    areaid[59] ='6';
+    cityid[59] ='267';
+    title[59] ="קרית גת";
+    areaid[60] ='6';
+    cityid[60] ='272';
+    title[60] ="שני ליבנה";
+    areaid[61] ='8';
+    cityid[61] ='310';
+    title[61] ="אבני חפץ";
+    areaid[62] ='8';
+    cityid[62] ='291';
+    title[62] ="טנא עומרים";
+    areaid[63] ='8';
+    cityid[63] ='305';
+    title[63] ="מעלה מכמש";
+    areaid[64] ='8';
+    cityid[64] ='215';
+    title[64] ="קרני שומרון";
+    areaid[65] ='8';
+    cityid[65] ='252';
+    title[65] ="רבבה";
+
+
+    function LoadCities(m) {
+        var area;
+        area = document.form1.AreaID.options[document.form1.AreaID.selectedIndex].value
+
+        var LengthArray
+        LengthArray = document.form1.AreaID.length
+
+        var i;
+        var k = 0;
+
+        for (i = 0; i < areaid.length; i++) {
+            if (area == areaid[i])
+                k++;
+        }
+
+        document.form1.CityID.length = k;
+        //alert(document.form1.CityID.length);
+        if (document.form1.CityID.length > 10)
+            document.form1.CityID.size = 10;
+        else
+            document.form1.CityID.size = document.form1.CityID.length;
+        //alert("k="+k);
+        k = 0;
+
+
+        for (i = 0; i < areaid.length; i++) {
+            if (area == areaid[i]) {
+                if (title[i] != '') {
+                    /*alert(title[i])*/
+                    document.form1.CityID.options[k].text = title[i];
+                    document.form1.CityID.options[k].value = cityid[i];
+                    document.form1.CityID.options[k].selected = false;
+                    k++
+                }
+            }
+        }
+
+        document.form1.CityID.value = '0';
+        if (m)
+            document.form1.CityID.value = m;
+    }
+
+    if(document.getElementById('CityID'))
+        document.form1.CityID.value='0';
+
+    function load_video_panoramic() {
+        if (document.getElementById("gallery_panorami"))
+            document.getElementById("gallery_panorami").style.visibility = 'visible';
+        if (document.getElementById("gallery_video"))
+            document.getElementById("gallery_video").style.visibility = 'visible';
+    }
+
+
+    function show(showID,hideID) {
+        $("#float_box").show();
+        $("#"+showID).show();
+        $("#"+hideID).hide();
+
+    }
+    function close(showID,hideID) {
+        $("#float_box").hide();
+        $("#"+showID).show();
+        $("#"+hideID).hide();
+    }
+
+    function open_ajax_loader(id) {
+        document.getElementById(id).style.visibility = 'visible';
+        document.getElementById("inSubmit").style.display = 'none';
+    }
+    function close_ajax_loader(id) {
+        document.getElementById(id).style.visibility = 'hidden';
+        document.getElementById("inSubmit").style.display = '';
+    }
+
+    function setCookie(name, value, expires, path, domain, secure) {
+        var today = new Date();
+        today.setTime(today.getTime());
+        var domain = ".yad2.co.il";
+
+        /*
+         if the expires variable is set, make the correct
+         expires time, the current script below will set
+         it for x number of days, to make it for hours,
+         delete * 24, for minutes, delete * 60 * 24
+         */
+        if (expires) {
+            expires = expires * 1000 * 60 * 60 * 24;
+        }
+        var expires_date = new Date(today.getTime() + (expires));
+
+        document.cookie = name + "=" + escape(value) +
+                ( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+                ( ( path ) ? ";path=" + path : "" ) +
+                ( ( domain ) ? ";domain=" + domain : "" ) +
+                ( ( secure ) ? ";secure" : "" );
+    }
+
+    $(document).ready(function () {
+        load_video_panoramic();
+        scroller('news_scroller', 0);
+        var carouselOptions = {visible : 3,
+            wrap: 'circular'
+        };
+        jQuery('#video_carousel,#panorami_carousel').live('jcarousel:create jcarousel:reload', function() {
+            var element = $(this),
+                    width = element.innerWidth();
+
+            if (width > 900) {
+                width = width / 3;
+            } else if (width > 600) {
+                width = width / 2;
+            }
+
+            element.jcarousel('items').css('width', width + 'px');
+        }).jcarousel(carouselOptions);
+
+        $("#city").change(function () {
+            get_Neighborhood($("#city option:selected").val());
+
+        });
+        if ($("#city option:selected").length) {
+            get_Neighborhood($("#city option:selected").val());
+        }
+    });
+
+    function get_Neighborhood(city, selected_neighborhood) {
+        //alert(city+'-'+selected_neighborhood)
+        if (selected_neighborhood) {
+            selected_neighborhood = "&neighborhood=" + selected_neighborhood;
+        } else {
+            selected_neighborhood = "";
+        }
+        $.ajax({
+            type: 'GET',
+            url: '/ajax/get_neighborhood.php',
+            data: "city=" + city + selected_neighborhood,
+            //data: {"city":city},
+            dataType: 'json',
+            success: function (result) {
+                //console.log(result);
+                if (result == null && city) {
+                    $("#select_combo4").html("אין שכונות");
+                    $("#neighborhood").html('<option value="">אין שכונות</option>');
+                } else {
+                    $("#select_combo4").html("בחר שכונה");
+                    $("#neighborhood").html('<option value="">בחר שכונה</option>');
+                    var Option;
+                    var selected;
+                    if (result == null){
+                        result = [];
+                    }
+                    $.each(result, function (index, neighborhood) {
+
+                        selected = "";
+                        //if ( neighborhood['Selected'] == true )
+                        //alert(neighborhood['Selected'])
+                        if (neighborhood.Selected == true) {
+                            selected = ' selected="selected"';
+                        }
+                        $("#neighborhood").append('<option value="' + neighborhood.Value + '" ' + selected + '>' + neighborhood.Title + '</option>');
+
+                        if (selected.length > 0) {
+                            $("#select_combo4").html(neighborhood.Title);
+                        }
+
+
+                    });
+                }
+
+                if (document.form1.neighborhood.length > 10)
+                    document.form1.neighborhood.size = 10;
+                else
+                    document.form1.neighborhood.size = document.form1.neighborhood.length;
+            }
+        });
+    }
+
+</script>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
