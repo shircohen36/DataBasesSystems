@@ -20,7 +20,7 @@ print ("Extracting APIs Data...\n")
 # Clean tables
 
 print ("Cleaning Tables...\n")
-
+#
 cleanDataAddID.cleanFile("MusicGenre",True)
 cleanDataAddID.cleanFile("MusicalArtist",True)
 cleanDataAddID.cleanFile("Band",True)

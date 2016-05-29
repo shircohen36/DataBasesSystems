@@ -61,12 +61,12 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     # insert values to table    
     for row in data:
         printrow=True
-        for item in row:
-            try: # check encoding of row
-                item.encode('utf8')
-            except:
-                printrow=False
-                break
+       # for item in row:
+            # try: # check encoding of row
+            #    item.encode('utf8')
+           # except:
+            #    printrow=False
+             #   break
         if printrow:
             fdata.write("INSERT INTO {0} VALUES (NULL,".format(tableName))
             for i in range (0,len(row)-1):
@@ -77,7 +77,8 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
                     fdata.write("%d" % item)
                 else:
                     fdata.write('\'')
-                    fdata.write(item.encode('utf8'))
+                  #  fdata.write(item.encode('utf8'))
+                    fdata.write(item)
                     fdata.write('\'')
                 if i<len(headline)-2:
                     fdata.write(",")

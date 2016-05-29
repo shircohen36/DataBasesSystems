@@ -104,14 +104,14 @@ def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
                     constEncoded=["","","",""]
                     writeRow=True
                     for i in range (0,len(constCol)):
-                        col=constCol[i]
-                        colResult=result[col]["value"]
-                        colResult=colResult.replace(",",";")
-                        try:
-                            constEncoded[i]=colResult.encode("utf-8")
-                        except:
-                            writeRow=False
-                            break
+                       col=constCol[i]
+                       colResult=result[col]["value"]
+                       colResult=colResult.replace(",",";")
+                       try:
+                           constEncoded[i]=colResult.encode("utf-8")
+                       except:
+                           writeRow=False
+                           break
 
                     if writeRow: #write encoded to "utf-8"
                        for colResult in constEncoded:
@@ -154,7 +154,7 @@ def createCSVTables():
     # langlist=[]
     # createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    # #
     # tableName="MusicalArtist"
     # tableType="MusicalArtist"
     # mustHaveList=["http://dbpedia.org/property/genre"]
@@ -164,7 +164,7 @@ def createCSVTables():
     # langlist=["description","background"]
     # createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-    #
+
     # tableName="Band"
     # tableType="Band"
     # mustHaveList=["http://dbpedia.org/property/genre"]

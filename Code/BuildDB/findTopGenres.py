@@ -103,10 +103,10 @@ def createTopGenre():
 
     filepath="DataTables/MusicGenreTop.csv"
     with open (filepath,'w') as f:
-      f.write("name,\n")
+      f.write("name\n")
       for genre in topGenres:
           genre=fixGenre(genre)
-          f.write("{0},\n".format(genre))
+          f.write("{0}\n".format(genre))
     f.close()
 
     filepath="DataTables\MusicGenre.csv"
@@ -154,6 +154,8 @@ def createTopGenre():
                 f.write("{0},International\n".format(row[nameIdx],item))
             for item in topGenreRow:
                 item=fixGenre(item)
+            topGenreRow=list(set(topGenreRow)) #remove doubles
+            for item in topGenreRow:
                 f.write("{0},{1}\n".format(row[nameIdx],item))
         f.write("Classical music composition,Classical\n")
         f.close

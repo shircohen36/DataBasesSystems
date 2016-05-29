@@ -59,10 +59,10 @@ def cleanFunc(filePath,outputPath,withID,counter):
         j=0
         for row in data:
             if row[0]!="NULL":
-                for i in range(0,len(headline)-1):
+                for i in range(0,len(headline)):
                     item = row[i]
                     f.write("{0}".format(item))
-                    if i<(len(headline)-2):
+                    if i<(len(headline)-1):
                         f.write(',')
                 if withID:
                     if j==0:
@@ -72,7 +72,7 @@ def cleanFunc(filePath,outputPath,withID,counter):
                     j+=1
                 else:
                     f.write('\n')
-        if "MusicGenre.csv" in filePath and counter==1:
+        if "MusicGenre.csv" in filePath and counter==2:
              f.write("-1,NULL,Classical music composition,NULL,%d\n" % j)
         f.close()
 
@@ -84,5 +84,5 @@ def cleanFile(fileName,withID):
         fixClassicalMusic(filePath,outputPath)
         filePath=outputPath
 
-    cleanFunc(filePath,outputPath,withID,1)
+    cleanFunc(filePath,outputPath,False,1)
     cleanFunc(outputPath,outputPath,withID,2)
