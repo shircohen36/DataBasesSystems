@@ -5,6 +5,7 @@
 
 import csv
 import os
+import numpy as np
 import unicodecsv
 
 
@@ -159,25 +160,31 @@ def createMatchTable(fscheme,fdata,dirpath):
 # In[ ]:
 
 # write index file
-def createIndex(f,dirpath):
-        for filename in os.listdir(dirpath):
+def createIndex(f,dir1,dir2):
+        for filename in os.listdir(dir1):
             tableName=filename.split('.csv')[0]
             if tableName == "Song" or tableName == "Single":
                 continue
-            field="name"
-            f.write("CREATE INDEX nameIndex ON {0}({1});\n".format(tableName,field))
+            field="ID"
+            f.write("CREATE INDEX idIndex ON {0}({1});\n".format(tableName,field))
+        for filename in os.listdir(dir2):
+            with open (dir2+"/"+filename,"r") as tf:
+                field=str(tf.readline()).replace("\n","")
+                field=field.split(",")
+                tf.close
+            tableName=filename.split('.csv')[0]
+            f.write("CREATE INDEX idIndex1 ON {0}({1});\n".format(tableName,field[0]))
+            f.write("CREATE INDEX idIndex2 ON {0}({1});\n".format(tableName,field[1]))
 
-
-# In[ ]:
 
 # write all DB building queries into one SQL_DB file
-def createSQLTables(dir1 ,dir2 ,dir3):
+def createSQLTables(dir1 ,dir2):
     outputSchemePath="SQL_DB/musicDB_schema.sql"
     outputDataPath="SQL_DB/musicDB_data.sql"
     with open(outputSchemePath,'w') as fscheme:
         with open(outputDataPath,'w') as fdata:
             createDataTable(fscheme,fdata,dir1)
             createMatchTable(fscheme,fdata,dir2)
-            createIndex(fscheme,dir3)
+            createIndex(fscheme,dir1,dir2)
             fdata.close
         fscheme.close
