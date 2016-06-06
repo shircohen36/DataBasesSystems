@@ -6,13 +6,20 @@ import unicodecsv
 from sets import Set
 
 # remove comma from the tables
-def cleanData(data):
+def cleanData(data,counter):
     idKeys=Set() #list of wiki page IDs
     headline=data[0]
     for row in data:
         if (row[0] in idKeys) or (len(row)!=len(headline)): #delete double values and defected rows
             row[0]="NULL"
         else:
+            if (counter==1):
+                try:
+                    for i in range(0,len(row)):
+                        row[i]=row[i].encode("utf-8")
+                except:
+                    row[0]="NULL"
+                    continue
             idKeys.add(row[0])
     return data
 
@@ -53,7 +60,7 @@ def cleanFunc(filePath,outputPath,withID,counter):
     with open(filePath) as f:
         data = list(csv.reader(f))
         f.close
-    data=cleanData(data)
+    data=cleanData(data,counter)
     headline=data[0]
     with open(outputPath,'w') as f:
         j=0

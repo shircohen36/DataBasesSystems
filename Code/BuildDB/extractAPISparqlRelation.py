@@ -25,7 +25,7 @@ def getTableFromQuery(typeTable,let,col,langlist,toGroup):
     const=""
     langconst=""
     groupByconst=""
-    sampleHeader="(Sample(?name) as ?name) "
+    sampleHeader=" (Sample(?id) as ?id) (Sample(?name) as ?name) "
     colName=col.split("/")[-1]
     if "#" in colName:
         colName=colName.split("#")[-1]
@@ -51,14 +51,15 @@ def getTableFromQuery(typeTable,let,col,langlist,toGroup):
         PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
         SELECT """+headers+""" WHERE{
             ?type a dbo:"""+typeTable+""".
-            ?type foaf:name ?name. """
-            + const + """
+            ?type foaf:name ?name.
+            ?type <http://dbpedia.org/ontology/wikiPageID> ?id.
+            """ + const + """
             FILTER regex(?name,"""+let+""","i").
             """+ langconst+"""
             }"""+groupByconst+"""
             ORDER BY ?type
      """)
- #   print (sparql.queryString)
+   # print (sparql.queryString)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     return results
@@ -72,7 +73,7 @@ def createRelationTable(tableName,tableType,columnlist,langlist):
 
         ## write headers ##
         headers=tableName.split("_")
-        f.write("{0},{1}\n".format(headers[0],headers[1]))
+        f.write("ID,{0},{1}\n".format(headers[0],headers[1]))
 
         for rng in tavRange:
             startR=ord(rng[0])
@@ -86,6 +87,7 @@ def createRelationTable(tableName,tableType,columnlist,langlist):
 
                 ## write rows ##
                     for result in results["results"]["bindings"]:
+                        rowid=result["id"]["value"]
                         rowname=result["name"]["value"]
                         try:
                             rowname=rowname.replace(",",";")
@@ -108,9 +110,9 @@ def createRelationTable(tableName,tableType,columnlist,langlist):
                             try:
                                 colName=colName.replace(",",";")
                                 colName=colName.encode("utf-8")
-                                f.write("{0},{1}\n".format(rowname,colName))
+                                f.write("{0},{1},{2}\n".format(rowid,rowname,colName))
                             except:  #don't print if encoding is bad
-                                f.write("{0},NULL\n".format(rowname))
+                                f.write("{0},{1},NULL\n".format(rowid,rowname))
 
         f.close()
 
@@ -154,7 +156,7 @@ def createCSVTables():
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-    #
+    # #
     # tableName="Band_MusicGenre"
     # tableType="Band"
     # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
@@ -162,7 +164,7 @@ def createCSVTables():
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-    #
+    # #
     # tableName="Song_MusicGenre"
     # tableType="Song"
     # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
@@ -186,7 +188,7 @@ def createCSVTables():
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="Band_BandMembers"
     # tableType="Band"
     # columns=["http://dbpedia.org/property/currentMembers","http://dbpedia.org/property/currentMember",
@@ -201,7 +203,7 @@ def createCSVTables():
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="Single_Artists"
     # tableType="Single"
     # columns=["http://dbpedia.org/ontology/musicalBand","http://dbpedia.org/ontology/musicalArtist","http://dbpedia.org/property/artist"]
@@ -216,26 +218,26 @@ def createCSVTables():
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="Song_Album"
     # tableType="Song"
     # columns=["http://dbpedia.org/property/Album"]
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="Single_Album"
     # tableType="Single"
     # columns=["http://dbpedia.org/property/Album"]
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-
+    #
     # tableName="MusicalArtist_AssociatedArtists"
     # tableType="MusicalArtist"
     # columns=["http://dbpedia.org/ontology/associatedMusicalArtist","http://dbpedia.org/ontology/associatedMusicalBand"]
     # langlist=["name"]
     # createRelationTable(tableName,tableType,columns,langlist)
     # print ("Table: "+tableName+" Completed!\n")
-    #
-    # print ("\nAll Tables Were Successfully Created!\n")
+
+    print ("\nAll Tables Were Successfully Created!\n")

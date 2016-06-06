@@ -200,7 +200,7 @@ def createCSVTables():
     # tableType="Album"
     # mustHaveList=["http://dbpedia.org/property/genre","http://dbpedia.org/property/artist",
     #               "http://dbpedia.org/ontology/musicalArtist"]
-    # optionalList=["http://dbpedia.org/property/type","http://dbpedia.org/property/year",
+    # optionalList=["http://dbpedia.org/property/type",
     #               "http://dbpedia.org/property/released","http://dbpedia.org/property/lastAlbum",
     #               "http://dbpedia.org/property/nextAlbum"]
     # langlist=[]

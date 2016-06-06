@@ -42,7 +42,7 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     headline=data.pop(0)
         
     # create table
-    fscheme.write("\tID INT NOT NULL AUTO_INCREMENT,\n")
+    fscheme.write("\tID INT NOT NULL,\n".format(len(data)+1))
     for i in range (0,len(headline)-1):
         item=headline[i]
         if valueTypeArray[i]==0:
@@ -62,14 +62,14 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     # insert values to table    
     for row in data:
         printrow=True
-       # for item in row:
-            # try: # check encoding of row
-            #    item.encode('utf8')
-           # except:
-            #    printrow=False
-             #   break
+        # for item in row:
+        #     try: # check encoding of row
+        #         item.encode('utf8')
+        #     except:
+        #         printrow=False
+        #         break
         if printrow:
-            fdata.write("INSERT INTO {0} VALUES (NULL,".format(tableName))
+            fdata.write("INSERT INTO {0} VALUES ({1},".format(tableName,row[len(row)-1]))
             for i in range (0,len(row)-1):
                 item=row[i]
                 item=item.replace("\'","\''")
@@ -78,13 +78,16 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
                     fdata.write("%d" % item)
                 else:
                     fdata.write('\'')
-                  #  fdata.write(item.encode('utf8'))
+                   # fdata.write(item.encode('utf8'))
                     fdata.write(item)
                     fdata.write('\'')
                 if i<len(headline)-2:
                     fdata.write(",")
             fdata.write(");\n")
     fdata.write("\n")
+
+    fdata.write("ALTER TABLE {0} MODIFY ID INT NOT NULL AUTO_INCREMENT;\n".format(tableName))
+    fdata.write("ALTER TABLE {0} AUTO_INCREMENT = {1};\n\n".format(tableName,len(data)+1))
 
 
 # In[ ]:
