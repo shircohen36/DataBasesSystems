@@ -1,15 +1,11 @@
 
 # coding: utf-8
 
-# In[68]:
-
 import csv
 import os
 import numpy as np
 import unicodecsv
 
-
-# In[69]:
 
 # check type of values in each coulumn
 def checkType(data):
@@ -31,9 +27,6 @@ def checkType(data):
                     print(row)
                     exit(0)
     return valueTypeArray
-
-
-# In[70]:
 
 # write the sql file from data file
 def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
@@ -77,10 +70,13 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
                     item=int(item)
                     fdata.write("%d" % item)
                 else:
-                    fdata.write('\'')
-                   # fdata.write(item.encode('utf8'))
-                    fdata.write(item)
-                    fdata.write('\'')
+                    if item=='NULL':
+                        fdata.write(item)
+                    else:
+                        fdata.write('\'')
+                       # fdata.write(item.encode('utf8'))
+                        fdata.write(item)
+                        fdata.write('\'')
                 if i<len(headline)-2:
                     fdata.write(",")
             fdata.write(");\n")
@@ -89,8 +85,6 @@ def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     fdata.write("ALTER TABLE {0} MODIFY ID INT NOT NULL AUTO_INCREMENT;\n".format(tableName))
     fdata.write("ALTER TABLE {0} AUTO_INCREMENT = {1};\n\n".format(tableName,len(data)+1))
 
-
-# In[ ]:
 
 # write the sql file from match file
 def writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
@@ -126,8 +120,6 @@ def writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
     fdata.write("\n")
 
 
-# In[71]:
-
 # create tables from dir
 def createDataTable(fscheme,fdata,dirpath):
     for filename in os.listdir(dirpath):
@@ -143,7 +135,6 @@ def createDataTable(fscheme,fdata,dirpath):
         writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray)                  
 
 
-# In[ ]:
 
 # create tables from dir
 def createMatchTable(fscheme,fdata,dirpath):
@@ -159,8 +150,6 @@ def createMatchTable(fscheme,fdata,dirpath):
         valueTypeArray=checkType(data)
         writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray) 
 
-
-# In[ ]:
 
 # write index file
 def createIndex(f,dir1,dir2):
@@ -182,8 +171,8 @@ def createIndex(f,dir1,dir2):
 
 # write all DB building queries into one SQL_DB file
 def createSQLTables(dir1 ,dir2):
-    outputSchemePath="SQL_DB/musicDB_schema.sql"
-    outputDataPath="SQL_DB/musicDB_data.sql"
+    outputSchemePath="../SQL_DB/musicDB_schema.sql"
+    outputDataPath="../SQL_DB/musicDB_data.sql"
     with open(outputSchemePath,'w') as fscheme:
         with open(outputDataPath,'w') as fdata:
             createDataTable(fscheme,fdata,dir1)

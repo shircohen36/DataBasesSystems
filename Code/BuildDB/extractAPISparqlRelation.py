@@ -19,7 +19,7 @@ def splitString (st):
         return st
     return [st]
 
-
+# the SPARQL generic query
 def getTableFromQuery(typeTable,let,col,langlist,toGroup):
     headers="*"
     const=""
@@ -64,11 +64,12 @@ def getTableFromQuery(typeTable,let,col,langlist,toGroup):
     results = sparql.query().convert()
     return results
 
+# call for SPARQL and create the csv table from the SPARQL results
 def createRelationTable(tableName,tableType,columnlist,langlist):
 
     tavRange=[['a','z'],['1','9']]
 
-    fileName="RelationTables/"+tableName+".csv"
+    fileName="../Data/RelationTables/"+tableName+".csv"
     with open(fileName,'w') as f:
 
         ## write headers ##
@@ -121,123 +122,123 @@ def createCSVTables():
 
     print ("Creating Tables...\n\n")
 
-    # tableName="MusicGenre_MusicSubGenre"
-    # tableType="MusicGenre"
-    # columns=["http://dbpedia.org/property/subgenres"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="MusicGenre_MusicDerivativeGenre"
-    # tableType="MusicGenre"
-    # columns=["http://dbpedia.org/property/derivatives"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="MusicGenre_MusicFusionGenre"
-    # tableType="MusicGenre"
-    # columns=["http://dbpedia.org/property/fusiongenres"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="MusicGenre_MusicStylisticOriginGenre"
-    # tableType="MusicGenre"
-    # columns=["http://dbpedia.org/property/stylisticOrigins"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
+    tableName="MusicGenre_MusicSubGenre"
+    tableType="MusicGenre"
+    columns=["http://dbpedia.org/property/subgenres"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
 
-    # tableName="MusicalArtist_MusicGenre"
-    # tableType="MusicalArtist"
-    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
-    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    # #
-    # tableName="Band_MusicGenre"
-    # tableType="Band"
-    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
-    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    # #
-    # tableName="Song_MusicGenre"
-    # tableType="Song"
-    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
-    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="Single_MusicGenre"
-    # tableType="Single"
-    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
-    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="Album_MusicGenre"
-    # tableType="Album"
-    # columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
-    #          "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="Band_BandMembers"
-    # tableType="Band"
-    # columns=["http://dbpedia.org/property/currentMembers","http://dbpedia.org/property/currentMember",
-    #          "http://dbpedia.org/property/bandMember","http://dbpedia.org/property/formerMembers"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
+    tableName="MusicGenre_MusicDerivativeGenre"
+    tableType="MusicGenre"
+    columns=["http://dbpedia.org/property/derivatives"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
 
-    # tableName="Song_Artists"
-    # tableType="Song"
-    # columns=["http://dbpedia.org/property/artist"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
+    tableName="MusicGenre_MusicFusionGenre"
+    tableType="MusicGenre"
+    columns=["http://dbpedia.org/property/fusiongenres"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="MusicGenre_MusicStylisticOriginGenre"
+    tableType="MusicGenre"
+    columns=["http://dbpedia.org/property/stylisticOrigins"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="MusicalArtist_MusicGenre"
+    tableType="MusicalArtist"
+    columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+             "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
     #
-    # tableName="Single_Artists"
-    # tableType="Single"
-    # columns=["http://dbpedia.org/ontology/musicalBand","http://dbpedia.org/ontology/musicalArtist","http://dbpedia.org/property/artist"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
+    tableName="Band_MusicGenre"
+    tableType="Band"
+    columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+             "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
     #
-    # tableName="Album_Artists"
-    # tableType="Album"
-    # columns=["http://dbpedia.org/ontology/musicalBand","http://dbpedia.org/ontology/musicalArtist",
-    #          "http://dbpedia.org/property/artist"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="Song_Album"
-    # tableType="Song"
-    # columns=["http://dbpedia.org/property/Album"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="Single_Album"
-    # tableType="Single"
-    # columns=["http://dbpedia.org/property/Album"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
-    #
-    # tableName="MusicalArtist_AssociatedArtists"
-    # tableType="MusicalArtist"
-    # columns=["http://dbpedia.org/ontology/associatedMusicalArtist","http://dbpedia.org/ontology/associatedMusicalBand"]
-    # langlist=["name"]
-    # createRelationTable(tableName,tableType,columns,langlist)
-    # print ("Table: "+tableName+" Completed!\n")
+    tableName="Song_MusicGenre"
+    tableType="Song"
+    columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+             "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Single_MusicGenre"
+    tableType="Single"
+    columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+             "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Album_MusicGenre"
+    tableType="Album"
+    columns=["http://dbpedia.org/property/genre","http://dbpedia.org/property/genres",
+             "http://dbpedia.org/ontology/genre","http://dbpedia.org/property/musicGenre"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Band_BandMembers"
+    tableType="Band"
+    columns=["http://dbpedia.org/property/currentMembers","http://dbpedia.org/property/currentMember",
+             "http://dbpedia.org/property/bandMember","http://dbpedia.org/property/formerMembers"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Song_Artists"
+    tableType="Song"
+    columns=["http://dbpedia.org/property/artist"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Single_Artists"
+    tableType="Single"
+    columns=["http://dbpedia.org/ontology/musicalBand","http://dbpedia.org/ontology/musicalArtist","http://dbpedia.org/property/artist"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Album_Artists"
+    tableType="Album"
+    columns=["http://dbpedia.org/ontology/musicalBand","http://dbpedia.org/ontology/musicalArtist",
+             "http://dbpedia.org/property/artist"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Song_Album"
+    tableType="Song"
+    columns=["http://dbpedia.org/property/Album"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="Single_Album"
+    tableType="Single"
+    columns=["http://dbpedia.org/property/Album"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
+
+    tableName="MusicalArtist_AssociatedArtists"
+    tableType="MusicalArtist"
+    columns=["http://dbpedia.org/ontology/associatedMusicalArtist","http://dbpedia.org/ontology/associatedMusicalBand"]
+    langlist=["name"]
+    createRelationTable(tableName,tableType,columns,langlist)
+    print ("Table: "+tableName+" Completed!\n")
 
     print ("\nAll Tables Were Successfully Created!\n")

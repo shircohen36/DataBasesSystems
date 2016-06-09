@@ -1,11 +1,10 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
-import extractClassicalmusichelper
 
-# the SPARQL generic query
+
 def getTableFromQuery(typeTable,let,mustHaveList,optionalList,langlist):
     strOptional=""
     strMustHave=""
-    sampleHeader="(Sample(?table) as ?table) (Sample(?name) as ?name) (Sample(?comment) as ?comment)"
+    sampleHeader="(Sample(?table) as ?table) (Sample(?comment) as ?comment)"
 
     if len(mustHaveList)>0:
          strMustHave+="{ "
@@ -51,36 +50,32 @@ def getTableFromQuery(typeTable,let,mustHaveList,optionalList,langlist):
         SELECT """+headers+"""
         WHERE{
             ?table a dbo:"""+typeTable+""".
-            ?table foaf:name ?name.
             ?table rdfs:comment ?comment.
             ?table <http://dbpedia.org/ontology/wikiPageID> ?id.
             """ + strMustHave + """
             OPTIONAL {
                 """ + strOptional + """
                 }
-            FILTER langMatches(lang(?name),"en").
             FILTER langMatches(lang(?comment),"en").
-            FILTER regex(?name,"""+let+""","i").
             }"""+groupByconst+"""
-            ORDER BY ?name
+            ORDER BY ?id
      """)
     # print (sparql.queryString)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     return results
 
- # call for SPARQL and create the csv table from the SPARQL results
 def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
 
     tavRange=[['a','z'],['1','9']]
 
-    constCol=["id","table","name","comment"]
+    constCol=["id","table","comment"]
 
     fileName="../Data/DataTables/"+tableName+".csv"
     with open(fileName,'w') as f:
 
         ## write headers ##
-        f.write("wikiPageID,url,name,comment,")
+        f.write("wikiPageID,url,comment,")
         for col in optionalList:
             colName=col.split("/")[-1]
             if "#" in colName:
@@ -103,7 +98,7 @@ def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
 
                 for result in results["results"]["bindings"]:
 
-                    constEncoded=["","","",""]
+                    constEncoded=["","",""]
                     writeRow=True
                     for i in range (0,len(constCol)):
                        col=constCol[i]
@@ -131,6 +126,10 @@ def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
                             if colResult=="" or colResult==" ":
                                 f.write("NULL,")
                                 continue
+                            if "/" in colResult and colName!="thumbnail":
+                               colResult=colResult.split("/")[-1]
+                            if "_" in colResult and colName!="thumbnail":
+                               colResult=colResult.replace("_"," ")
                             colResult=colResult.replace(",",";")
                             colResult=colResult.encode("utf-8")
                             f.write("{0},".format(colResult))
@@ -140,72 +139,12 @@ def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
                     f.write("\n") #end line
         f.close()
 
-
-def createCSVTables():
-
-    print ("Creating Tables...\n\n")
-
-    tableName="MusicGenre"
-    tableType="MusicGenre"
+# create classical music table
+def run_code():
+    tableName="ClassicalMusicComposition"
+    tableType="ClassicalMusicComposition"
     mustHaveList=[]
-    optionalList=[]
+    optionalList=["http://dbpedia.org/property/cname","http://dbpedia.org/property/composer"]
     langlist=[]
     createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
     print ("Table: "+tableName+" Completed!\n")
-
-    tableName="MusicalArtist"
-    tableType="MusicalArtist"
-    mustHaveList=["http://dbpedia.org/property/genre"]
-    optionalList=["http://dbpedia.org/ontology/activeYearsStartYear","http://dbpedia.org/ontology/activeYearsEndYear",
-             "http://dbpedia.org/property/background","http://dbpedia.org/property/description",
-             "http://dbpedia.org/ontology/thumbnail"]
-    langlist=["description","background"]
-    createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
-    print ("Table: "+tableName+" Completed!\n")
-
-    tableName="Band"
-    tableType="Band"
-    mustHaveList=["http://dbpedia.org/property/genre"]
-    optionalList=["http://dbpedia.org/ontology/activeYearsStartYear","http://dbpedia.org/ontology/activeYearsEndYear",
-             "http://dbpedia.org/property/background","http://dbpedia.org/ontology/thumbnail"]
-    langlist=["background"]
-    createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
-    print ("Table: "+tableName+" Completed!\n")
-
-    tableName="Single"
-    tableType="Single"
-    mustHaveList=["http://dbpedia.org/property/genre","http://dbpedia.org/ontology/musicalBand",
-                 "http://dbpedia.org/ontology/musicalArtist"]
-    optionalList=["http://dbpedia.org/property/year",
-                  "http://dbpedia.org/property/Album","http://dbpedia.org/ontology/subsequentWork",
-                 "http://dbpedia.org/ontology/previousWork","http://dbpedia.org/ontology/thumbnail"]
-    langlist=[]
-    createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
-    print ("Table: "+tableName+" Completed!\n")
-
-
-    tableName="Song"
-    tableType="Song"
-    mustHaveList=["http://dbpedia.org/property/genre","http://dbpedia.org/property/artist"]
-    optionalList=["http://dbpedia.org/property/year",
-                "http://dbpedia.org/property/Album","http://dbpedia.org/ontology/subsequentWork",
-                 "http://dbpedia.org/ontology/previousWork","http://dbpedia.org/ontology/thumbnail"]
-    langlist=[]
-    createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
-    print ("Table: "+tableName+" Completed!\n")
-
-    tableName="Album"
-    tableType="Album"
-    mustHaveList=["http://dbpedia.org/property/genre","http://dbpedia.org/property/artist",
-                  "http://dbpedia.org/ontology/musicalArtist"]
-    optionalList=["http://dbpedia.org/property/type",
-                  "http://dbpedia.org/property/released","http://dbpedia.org/property/lastAlbum",
-                  "http://dbpedia.org/property/nextAlbum"]
-    langlist=[]
-    createDataTable(tableName,tableType,mustHaveList,optionalList,langlist)
-    print ("Table: "+tableName+" Completed!\n")
-
-    extractClassicalmusichelper.run_code() #create classical music table
-
-    print ("\nAll Tables Were Successfully Created!\n")
-

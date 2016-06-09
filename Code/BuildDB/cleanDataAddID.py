@@ -23,6 +23,7 @@ def cleanData(data,counter):
             idKeys.add(row[0])
     return data
 
+# clean classical music table
 def fixClassicalMusic(filePath,outputPath):
     with open(filePath) as f:
         data = list(csv.reader(f))
@@ -48,9 +49,9 @@ def fixClassicalMusic(filePath,outputPath):
                 newname=row[urlIdx].split("/")[-1]
                 newname=newname.replace("_"," ")
                 row[cIdx]=newname
-            for i in range (0,len(row)):
+            for i in range (0,len(row)-1):
                 f.write("{0}".format(row[i]))
-                if i<len(row)-1:
+                if i<len(row)-2:
                     f.write(',')
             f.write("\n")
         f.close()
@@ -84,8 +85,8 @@ def cleanFunc(filePath,outputPath,withID,counter):
         f.close()
 
 def cleanFile(fileName,withID):
-    filePath="DataTables"+"/"+fileName+".csv"
-    outputPath="DataTablesClean"+"/"+fileName+".csv"
+    filePath="../Data/DataTables"+"/"+fileName+".csv"
+    outputPath="../Data/DataTablesClean"+"/"+fileName+".csv"
 
     if fileName=="ClassicalMusicComposition":
         fixClassicalMusic(filePath,outputPath)
