@@ -76,7 +76,7 @@ def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
 
     constCol=["id","table","name","comment"]
 
-    fileName="../Data/DataTables/"+tableName+".csv"
+    fileName="Data/DataTables/"+tableName+".csv"
     with open(fileName,'w') as f:
 
         ## write headers ##
@@ -99,51 +99,63 @@ def createDataTable(tableName,tableType,mustHaveList,optionalList,langlist):
             for tav in range(startR, endR):
                 let="\""+"^"+chr(tav)+"\""
 
-                results=getTableFromQuery(tableType,let,mustHaveList,optionalList,langlist) #return query
+                try:
+                    results=getTableFromQuery(tableType,let,mustHaveList,optionalList,langlist) #return query
 
-                for result in results["results"]["bindings"]:
+                    for result in results["results"]["bindings"]:
 
-                    constEncoded=["","","",""]
-                    writeRow=True
-                    for i in range (0,len(constCol)):
-                       col=constCol[i]
-                       colResult=result[col]["value"]
-                       colResult=colResult.replace(",",";")
-                       try:
-                           constEncoded[i]=colResult.encode("utf-8")
-                       except:
-                           writeRow=False
-                           break
+                        constEncoded=["","","",""]
+                        writeRow=True
+                        for i in range (0,len(constCol)):
+                           col=constCol[i]
+                           colResult=result[col]["value"]
+                           colResult=colResult.replace(",",";")
+                           try:
+                               constEncoded[i]=colResult.encode("utf-8")
+                           except:
+                               writeRow=False
+                               break
 
-                    if writeRow: #write encoded to "utf-8"
-                       for colResult in constEncoded:
-                            f.write("{0},".format(colResult))
+                        if writeRow: #write encoded to "utf-8"
+                           for colResult in constEncoded:
+                                f.write("{0},".format(colResult))
 
-                    else: #4 main can't be encoded -> don't write row
-                        continue
+                        else: #4 main can't be encoded -> don't write row
+                            continue
 
-                    for col in optionalList:
-                        colName=col.split("/")[-1]
-                        if "#" in col:
-                            colName=colName.split("#")[-1]
-                        try:
-                            colResult=result[colName]["value"]
-                            if colResult=="" or colResult==" ":
-                                f.write("NULL,")
-                                continue
-                            colResult=colResult.replace(",",";")
-                            colResult=colResult.encode("utf-8")
-                            f.write("{0},".format(colResult))
-                        except:
-                            f.write("NULL,")
+                        edge=len(optionalList)-1
+                        for i in range (0,len(optionalList)):
+                            col=optionalList[i]
+                            colName=col.split("/")[-1]
+                            if "#" in col:
+                                colName=colName.split("#")[-1]
+                            try:
+                                colResult=result[colName]["value"]
+                                if colResult=="" or colResult==" ":
+                                    f.write("NULL")
+                                    if i<edge:
+                                        f.write(',')
+                                    continue
+                                colResult=colResult.replace(",",";")
+                                colResult=colResult.encode("utf-8")
+                                f.write("{0}".format(colResult))
+                                if i<edge:
+                                    f.write(',')
+                            except:
+                                f.write("NULL")
+                                if i<edge:
+                                    f.write(',')
 
-                    f.write("\n") #end line
+                        f.write("\n") #end line
+                except:
+                    print ("Server Error: continue to next search.\n")
+                    continue
         f.close()
 
 
 def createCSVTables():
 
-    print ("Creating Tables...\n\n")
+    print ("Creating Data Tables...\n\n")
 
     tableName="MusicGenre"
     tableType="MusicGenre"
@@ -207,5 +219,5 @@ def createCSVTables():
 
     extractClassicalmusichelper.run_code() #create classical music table
 
-    print ("\nAll Tables Were Successfully Created!\n")
+    print ("\nAll Data Tables Were Successfully Created!\n")
 

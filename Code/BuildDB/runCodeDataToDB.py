@@ -8,16 +8,24 @@ import combineTwoTablesToOne
 import createRelationTablesByID
 import findTopGenres
 import createMySQLTableFromCSV
+import os
+import shutil
 
-header="../Data/"
+print ("Building The DB:\n")
 
+#create directories
+print ("Creating Directories...\n")
+
+directories=["Data","SQL_DB","Data/DataTables","Data/DataTablesClean","Data/RelationTables","Data/RelationTablesID"]
+for dir in directories:
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 # Get DBPedia APIs and create CSV tables
 print ("Extracting APIs Data...\n")
 
 extractAPISparqlData.createCSVTables()
 extractAPISparqlRelation.createCSVTables()
-
 
 
 # Clean tables
@@ -40,39 +48,37 @@ cleanDataAddID.cleanFile("MusicGenreTop",True)
 # Combine tables
 print ("Combining Tables...\n")
 
-combineTwoTablesToOne.combineTwoWithID(header+"DataTablesClean",header+"DataTablesClean","Song","Single","Songs")
+combineTwoTablesToOne.combineTwoWithID("Data/DataTablesClean","Data/DataTablesClean","Song","Single","Songs")
 
-combineTwoTablesToOne.combineTwo(header+"RelationTables",header+"RelationTables","Song_Artists","Single_Artists","Songs_Artists")
-combineTwoTablesToOne.combineTwo(header+"RelationTables",header+"RelationTables","Song_MusicGenre","Single_MusicGenre","Songs_MusicGenre")
+combineTwoTablesToOne.combineTwo("Data/RelationTables","Data/RelationTables","Song_Artists","Single_Artists","Songs_Artists")
+combineTwoTablesToOne.combineTwo("Data/RelationTables","Data/RelationTables","Song_MusicGenre","Single_MusicGenre","Songs_MusicGenre")
 
 # Create ID relation tables
 print ("Creating ID Relation Tables...\n")
 
-createRelationTablesByID.createByID(header+"DataTablesClean","MusicalArtist","MusicGenre",header+"RelationTables","MusicalArtist_MusicGenre",header+"RelationTablesID","MusicalArtist_MusicGenre",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","Songs","MusicGenre",header+"RelationTables","Songs_MusicGenre",header+"RelationTablesID","Songs_MusicGenre",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","Album","MusicGenre",header+"RelationTables","Album_MusicGenre",header+"RelationTablesID","Album_MusicGenre",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","Band","MusicGenre",header+"RelationTables","Band_MusicGenre",header+"RelationTablesID","Band_MusicGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","MusicalArtist","MusicGenre","Data/RelationTables","MusicalArtist_MusicGenre","Data/RelationTablesID","MusicalArtist_MusicGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Songs","MusicGenre","Data/RelationTables","Songs_MusicGenre","Data/RelationTablesID","Songs_MusicGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Album","MusicGenre","Data/RelationTables","Album_MusicGenre","Data/RelationTablesID","Album_MusicGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Band","MusicGenre","Data/RelationTables","Band_MusicGenre","Data/RelationTablesID","Band_MusicGenre",False)
 
-createRelationTablesByID.createByID(header+"DataTablesClean","MusicGenre","MusicGenreTop",header+"RelationTables","MusicGenre_MusicGenreTop",header+"RelationTablesID","MusicGenre_MusicGenreTop",True)
-createRelationTablesByID.createByID(header+"DataTablesClean","MusicGenre","MusicGenre",header+"RelationTables","MusicGenre_MusicDerivativeGenre",header+"RelationTablesID","MusicGenre_MusicDerivativeGenre",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","MusicGenre","MusicGenre",header+"RelationTables","MusicGenre_MusicFusionGenre",header+"RelationTablesID","MusicGenre_MusicFusionGenre",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","MusicGenre","MusicGenre",header+"RelationTables","MusicGenre_MusicStylisticOriginGenre",header+"RelationTablesID","MusicGenre_MusicStylisticOriginGenre",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","MusicGenre","MusicGenre",header+"RelationTables","MusicGenre_MusicSubGenre",header+"RelationTablesID","MusicGenre_MusicSubGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","MusicGenre","MusicGenreTop","Data/RelationTables","MusicGenre_MusicGenreTop","Data/RelationTablesID","MusicGenre_MusicGenreTop",True)
+createRelationTablesByID.createByID("Data/DataTablesClean","MusicGenre","MusicGenre","Data/RelationTables","MusicGenre_MusicDerivativeGenre","Data/RelationTablesID","MusicGenre_MusicDerivativeGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","MusicGenre","MusicGenre","Data/RelationTables","MusicGenre_MusicFusionGenre","Data/RelationTablesID","MusicGenre_MusicFusionGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","MusicGenre","MusicGenre","Data/RelationTables","MusicGenre_MusicStylisticOriginGenre","Data/RelationTablesID","MusicGenre_MusicStylisticOriginGenre",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","MusicGenre","MusicGenre","Data/RelationTables","MusicGenre_MusicSubGenre","Data/RelationTablesID","MusicGenre_MusicSubGenre",False)
 
-createRelationTablesByID.createByID(header+"DataTablesClean","Songs","MusicalArtist",header+"RelationTables","Songs_Artists",header+"RelationTablesID","Songs_MusicalArtist",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","Songs","Band",header+"RelationTables","Songs_Artists",header+"RelationTablesID","Songs_Band",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","Album","MusicalArtist",header+"RelationTables","Album_Artists",header+"RelationTablesID","Album_MusicalArtist",False)
-createRelationTablesByID.createByID(header+"DataTablesClean","Album","Band",header+"RelationTables","Album_Artists",header+"RelationTablesID","Album_Band",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Songs","MusicalArtist","Data/RelationTables","Songs_Artists","Data/RelationTablesID","Songs_MusicalArtist",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Songs","Band","Data/RelationTables","Songs_Artists","Data/RelationTablesID","Songs_Band",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Album","MusicalArtist","Data/RelationTables","Album_Artists","Data/RelationTablesID","Album_MusicalArtist",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Album","Band","Data/RelationTables","Album_Artists","Data/RelationTablesID","Album_Band",False)
 
-createRelationTablesByID.createByID(header+"DataTablesClean","Band","MusicalArtist",header+"RelationTables","Band_BandMembers",header+"RelationTablesID","Band_MusicalArtist",False)
+createRelationTablesByID.createByID("Data/DataTablesClean","Band","MusicalArtist","Data/RelationTables","Band_BandMembers","Data/RelationTablesID","Band_MusicalArtist",False)
 
 # Create SQL schema and data
 print ("Creating SQL files...\n")
 
-createMySQLTableFromCSV.createSQLTables(header+"DataTablesClean",header+"RelationTablesID")
+createMySQLTableFromCSV.createSQLTables("Data/DataTablesClean","Data/RelationTablesID")
 
-print ("Process Successfully Finished!\n")
-
-
+print ("Process Successfully Finished! SQL files are in the 'SQL_DB' directory.\n")
 
 

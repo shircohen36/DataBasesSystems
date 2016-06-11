@@ -69,7 +69,7 @@ def createRelationTable(tableName,tableType,columnlist,langlist):
 
     tavRange=[['a','z'],['1','9']]
 
-    fileName="../Data/RelationTables/"+tableName+".csv"
+    fileName="Data/RelationTables/"+tableName+".csv"
     with open(fileName,'w') as f:
 
         ## write headers ##
@@ -84,43 +84,47 @@ def createRelationTable(tableName,tableType,columnlist,langlist):
                 let="\""+"^"+chr(tav)+"\""
 
                 for col in columnlist:
-                    results=getTableFromQuery(tableType,let,col,langlist,False) #return query
+                    try:
+                        results=getTableFromQuery(tableType,let,col,langlist,False) #return query
 
-                ## write rows ##
-                    for result in results["results"]["bindings"]:
-                        rowid=result["id"]["value"]
-                        rowname=result["name"]["value"]
-                        try:
-                            rowname=rowname.replace(",",";")
-                            rowname=rowname.encode("utf-8")
-                        except: #don't print line if name encoding is bad
-                            continue
-                        col=col.split("/")[-1]
-                        if "#" in col:
-                            col=col.split("#")[-1]
-                        colvalue=result[col]["value"]
-                        colvalue=splitString(colvalue)
-                        for colName in colvalue:
-                            if colName.isspace() or colName=='': #empty string
-                                continue
-                            if "/" in colName:
-                                colName=colName.split('/')[-1]
-                                colName=colName.replace('_',' ')
-                            if '\n' in colName:
-                                colName=colName.split('\n')[0]
+                        ## write rows ##
+                        for result in results["results"]["bindings"]:
+                            rowid=result["id"]["value"]
+                            rowname=result["name"]["value"]
                             try:
-                                colName=colName.replace(",",";")
-                                colName=colName.encode("utf-8")
-                                f.write("{0},{1},{2}\n".format(rowid,rowname,colName))
-                            except:  #don't print if encoding is bad
-                                f.write("{0},{1},NULL\n".format(rowid,rowname))
+                                rowname=rowname.replace(",",";")
+                                rowname=rowname.encode("utf-8")
+                            except: #don't print line if name encoding is bad
+                                continue
+                            col=col.split("/")[-1]
+                            if "#" in col:
+                                col=col.split("#")[-1]
+                            colvalue=result[col]["value"]
+                            colvalue=splitString(colvalue)
+                            for colName in colvalue:
+                                if colName.isspace() or colName=='': #empty string
+                                    continue
+                                if "/" in colName:
+                                    colName=colName.split('/')[-1]
+                                    colName=colName.replace('_',' ')
+                                if '\n' in colName:
+                                    colName=colName.split('\n')[0]
+                                try:
+                                    colName=colName.replace(",",";")
+                                    colName=colName.encode("utf-8")
+                                    f.write("{0},{1},{2}\n".format(rowid,rowname,colName))
+                                except:  #don't print if encoding is bad
+                                    f.write("{0},{1},NULL\n".format(rowid,rowname))
+                    except:
+                        print ("Server Error: continue to next search.\n")
+                        continue
 
         f.close()
 
 
 def createCSVTables():
 
-    print ("Creating Tables...\n\n")
+    print ("Creating Relation Tables...\n\n")
 
     tableName="MusicGenre_MusicSubGenre"
     tableType="MusicGenre"
@@ -241,4 +245,4 @@ def createCSVTables():
     createRelationTable(tableName,tableType,columns,langlist)
     print ("Table: "+tableName+" Completed!\n")
 
-    print ("\nAll Tables Were Successfully Created!\n")
+    print ("\nAll Relation Tables Were Successfully Created!\n")

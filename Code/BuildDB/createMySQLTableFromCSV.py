@@ -29,99 +29,92 @@ def checkType(data):
     return valueTypeArray
 
 # write the sql file from data file
-def writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
+def writeDataSqlFile(f,data,tableName,valueTypeArray):
     
-    fscheme.write("CREATE TABLE {0} (\n".format(tableName))
+    f.write("CREATE TABLE {0} (\n".format(tableName))
     headline=data.pop(0)
         
     # create table
-    fscheme.write("\tID INT NOT NULL,\n".format(len(data)+1))
+    f.write("\tID INT NOT NULL,\n".format(len(data)+1))
     for i in range (0,len(headline)-1):
         item=headline[i]
         if valueTypeArray[i]==0:
-            fscheme.write("\t{0} INT,\n".format(item))
+            f.write("\t{0} INT,\n".format(item))
         else:
             if "comment" in item or "discription" in item or valueTypeArray[i]>1500:
-                fscheme.write("\t{0} TEXT,\n".format(item))
+                f.write("\t{0} TEXT,\n".format(item))
             elif item=="name":
                 valueTypeArray[i]+=16
-                fscheme.write("\t{0} VARCHAR({1}) NOT NULL,\n".format(item,valueTypeArray[i]))
+                f.write("\t{0} VARCHAR({1}) NOT NULL,\n".format(item,valueTypeArray[i]))
             else:
                 valueTypeArray[i]+=16
-                fscheme.write("\t{0} VARCHAR({1}),\n".format(item, valueTypeArray[i]))
-    fscheme.write("\tPRIMARY KEY (ID)\n")
-    fscheme.write(");\n\n")
+                f.write("\t{0} VARCHAR({1}),\n".format(item, valueTypeArray[i]))
+    f.write("\tPRIMARY KEY (ID)\n")
+    f.write(");\n\n")
         
     # insert values to table    
     for row in data:
         printrow=True
-        # for item in row:
-        #     try: # check encoding of row
-        #         item.encode('utf8')
-        #     except:
-        #         printrow=False
-        #         break
         if printrow:
-            fdata.write("INSERT INTO {0} VALUES ({1},".format(tableName,row[len(row)-1]))
+            f.write("INSERT INTO {0} VALUES ({1},".format(tableName,row[len(row)-1]))
             for i in range (0,len(row)-1):
                 item=row[i]
                 item=item.replace("\'","\''")
                 if valueTypeArray[i]==0:
                     item=int(item)
-                    fdata.write("%d" % item)
+                    f.write("%d" % item)
                 else:
                     if item=='NULL':
-                        fdata.write(item)
+                        f.write(item)
                     else:
-                        fdata.write('\'')
-                       # fdata.write(item.encode('utf8'))
-                        fdata.write(item)
-                        fdata.write('\'')
+                        f.write('\'')
+                        f.write(item)
+                        f.write('\'')
                 if i<len(headline)-2:
-                    fdata.write(",")
-            fdata.write(");\n")
-    fdata.write("\n")
+                    f.write(",")
+            f.write(");\n")
+    f.write("\n")
 
-    fdata.write("ALTER TABLE {0} MODIFY ID INT NOT NULL AUTO_INCREMENT;\n".format(tableName))
-    fdata.write("ALTER TABLE {0} AUTO_INCREMENT = {1};\n\n".format(tableName,len(data)+1))
+    f.write("ALTER TABLE {0} MODIFY ID INT NOT NULL AUTO_INCREMENT;\n".format(tableName))
+    f.write("ALTER TABLE {0} AUTO_INCREMENT = {1};\n\n".format(tableName,len(data)+1))
 
 
 # write the sql file from match file
-def writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray):
+def writeMatchSqlFile(f,data,tableName,valueTypeArray):
    
-    fscheme.write("CREATE TABLE {0} (\n".format(tableName))
+    f.write("CREATE TABLE {0} (\n".format(tableName))
     headline=data.pop(0)
         
     # create table
     for i in range (0,len(headline)):
         item=headline[i]
-        fscheme.write("\t{0} INT\n".format(item))
+        f.write("\t{0} INT\n".format(item))
         refTable=tableName.split("_")[i]
         if "Genre" in refTable and "Top" not in refTable:
             refTable="MusicGenre"
-        fscheme.write("\t\tREFERENCES {0}(ID)".format(refTable))
+        f.write("\t\tREFERENCES {0}(ID)".format(refTable))
         if i<len(headline)-1:
-            fscheme.write (',\n')
+            f.write (',\n')
         else:
-            fscheme.write ('\n')
-    fscheme.write(");\n\n")
+            f.write ('\n')
+    f.write(");\n\n")
         
     # insert values to table
 
     for row in data:
-        fdata.write("INSERT INTO {0} VALUES (".format(tableName))
+        f.write("INSERT INTO {0} VALUES (".format(tableName))
         for i in range (0,len(row)):
             item=row[i]
             item=int(item)
-            fdata.write("%d" % item)
+            f.write("%d" % item)
             if i<len(headline)-1:
-                fdata.write(",")
-        fdata.write(");\n")
-    fdata.write("\n")
+                f.write(",")
+        f.write(");\n")
+    f.write("\n")
 
 
 # create tables from dir
-def createDataTable(fscheme,fdata,dirpath):
+def createDataTable(f,dirpath):
     for filename in os.listdir(dirpath):
         filepath=dirpath+'/'+filename
         tableName=filename.split('.csv')[0]
@@ -132,12 +125,12 @@ def createDataTable(fscheme,fdata,dirpath):
             data.reverse
             f2.close
         valueTypeArray=checkType(data)
-        writeDataSqlFile(fscheme,fdata,data,tableName,valueTypeArray)                  
+        writeDataSqlFile(f,data,tableName,valueTypeArray)
 
 
 
 # create tables from dir
-def createMatchTable(fscheme,fdata,dirpath):
+def createMatchTable(f,dirpath):
     for filename in os.listdir(dirpath):
         filepath=dirpath+'/'+filename
         tableName=filename.split('.csv')[0]
@@ -148,7 +141,7 @@ def createMatchTable(fscheme,fdata,dirpath):
             data.reverse
             f2.close
         valueTypeArray=checkType(data)
-        writeMatchSqlFile(fscheme,fdata,data,tableName,valueTypeArray) 
+        writeMatchSqlFile(f,data,tableName,valueTypeArray)
 
 
 # write index file
@@ -171,12 +164,9 @@ def createIndex(f,dir1,dir2):
 
 # write all DB building queries into one SQL_DB file
 def createSQLTables(dir1 ,dir2):
-    outputSchemePath="../SQL_DB/musicDB_schema.sql"
-    outputDataPath="../SQL_DB/musicDB_data.sql"
-    with open(outputSchemePath,'w') as fscheme:
-        with open(outputDataPath,'w') as fdata:
-            createDataTable(fscheme,fdata,dir1)
-            createMatchTable(fscheme,fdata,dir2)
-            createIndex(fscheme,dir1,dir2)
-            fdata.close
-        fscheme.close
+    outputSQL="SQL_DB/CREATE-DB-SCRIPT.sql"
+    with open(outputSQL,'w') as f:
+            createDataTable(f,dir1)
+            createMatchTable(f,dir2)
+            createIndex(f,dir1,dir2)
+            f.close

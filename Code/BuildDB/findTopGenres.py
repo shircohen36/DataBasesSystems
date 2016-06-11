@@ -95,7 +95,7 @@ def fixGenre(item):
 # find top Genres, create MusicGenreTop table and relation table
 def createTopGenre():
 
-    filepath="../Data/DataTables/MusicGenreTop.csv"
+    filepath="Data/DataTables/MusicGenreTop.csv"
     with open (filepath,'w') as f:
       f.write("name\n")
       writeGenres=[genre for genre in topGenres]
@@ -107,16 +107,16 @@ def createTopGenre():
       f.write("Classical\n")
     f.close()
 
-    filepath="../Data/DataTables/MusicGenre.csv"
+    filepath="Data/DataTables/MusicGenre.csv"
     with open(filepath) as f:
         data = list(csv.reader(f))
         f.close
     headline=data.pop(0)
 
-    insertToDict("../Data/RelationTables/MusicGenre_MusicDerivativeGenre.csv",dictDer)
-    insertToDict("../Data/RelationTables/MusicGenre_MusicFusionGenre.csv",dictFus)
-    insertToDict("../Data/RelationTables/MusicGenre_MusicStylisticOriginGenre.csv",dictOrg)
-    insertToDict("../Data/RelationTables/MusicGenre_MusicSubGenre.csv",dictSub)
+    insertToDict("Data/RelationTables/MusicGenre_MusicDerivativeGenre.csv",dictDer)
+    insertToDict("Data/RelationTables/MusicGenre_MusicFusionGenre.csv",dictFus)
+    insertToDict("Data/RelationTables/MusicGenre_MusicStylisticOriginGenre.csv",dictOrg)
+    insertToDict("Data/RelationTables/MusicGenre_MusicSubGenre.csv",dictSub)
 
     nameIdx=-1
     for i in range(0,len(headline)):
@@ -129,7 +129,7 @@ def createTopGenre():
         print(headline)
         exit(0)
 
-    filepath="../Data/RelationTables/MusicGenre_MusicGenreTop.csv"
+    filepath="Data/RelationTables/MusicGenre_MusicGenreTop.csv"
     with open(filepath,'w') as f:
         f.write("MusicGenre,TopGenre\n")
         for row in data:
